@@ -11,6 +11,7 @@ import MicroInsight from './MicroInsight'
 import UserMenu from './UserMenu'
 import { blueResetJourney, dayZeroModule } from '@/data/journey'
 import { ResultEngine } from '@/lib/agents/result_engine'
+import Footer from '../components/Footer'
 
 const JOURNEY_STAGES = [
     'Calmar', 'Restaurar', 'Regular', 'Liberar', 'Abrir', 'Coherencia', 'Integrar'
@@ -191,6 +192,7 @@ export default async function DashboardPage({
                     )}
                 </section>
             </main>
+            <Footer />
         </div>
     )
 }

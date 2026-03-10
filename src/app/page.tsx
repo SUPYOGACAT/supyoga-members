@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { welcomeModule } from '@/data/journey'
+import Footer from './components/Footer'
 
 export default async function HomePage() {
   const supabase = await createClient()

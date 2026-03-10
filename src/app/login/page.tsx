@@ -1,8 +1,9 @@
 import { login, signup } from './actions'
+import Footer from '../components/Footer'
 
 export default function LoginPage() {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#07131e] text-slate-200">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#07131e] text-slate-200">
             <div className="max-w-md w-full p-8 rounded-2xl bg-[#0b1a29] shadow-2xl border border-[#1a365d]">
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-light text-blue-100 tracking-wide mb-2">BLUE RESET</h1>
@@ -47,6 +48,7 @@ export default function LoginPage() {
                     </div>
                 </form>
             </div>
+            <Footer />
         </div>
     )
 }
