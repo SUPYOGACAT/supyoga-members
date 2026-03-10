@@ -24,7 +24,7 @@ export const StateManager = {
         const { data: current } = await supabase.from('user_states').select('water_drops, current_streak').eq('user_id', userId).single();
         if (!current) return;
 
-        const updatePayload: any = {
+        const updatePayload: Record<string, unknown> = {
             water_drops: current.water_drops + addedDrops,
             updated_at: new Date().toISOString()
         };
@@ -38,7 +38,7 @@ export const StateManager = {
         await supabase.from('user_states').update(updatePayload).eq('user_id', userId);
     },
 
-    async logEvent(userId: string, eventType: string, metadata: any, duration?: number) {
+    async logEvent(userId: string, eventType: string, metadata: Record<string, unknown>, duration?: number) {
         const supabase = await createClient();
         await supabase.from('session_logs').insert({
             user_id: userId,

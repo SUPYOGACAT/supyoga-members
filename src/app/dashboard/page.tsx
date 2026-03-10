@@ -177,7 +177,7 @@ export default async function DashboardPage({
                                     </div>
 
                                     <div className="mt-12">
-                                        <MicroInsight sentiment={currentDayReflection?.sentiment_flag as any} day={viewDayNum} />
+                                        <MicroInsight sentiment={currentDayReflection?.sentiment_flag as "calm" | "neutral" | "low_emotion"} day={viewDayNum} />
                                     </div>
 
                                     {/* Only show next day button if viewing the actual current completed day */}

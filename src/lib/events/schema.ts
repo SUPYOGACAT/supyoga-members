@@ -1,3 +1,5 @@
+export type EventPayload = Record<string, unknown>;
+
 export type EventType =
     | 'SESSION_START'
     | 'VIDEO_COMPLETED'
@@ -19,5 +21,6 @@ export interface SystemEvent {
     timestamp: string;
     user_id: string;
     action_type: EventType;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     payload: Record<string, any>;
 }

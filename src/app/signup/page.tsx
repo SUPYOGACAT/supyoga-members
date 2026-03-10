@@ -1,8 +1,8 @@
-import { login } from './actions'
+import { signup } from '../login/actions'
 import Footer from '../components/Footer'
 import Link from 'next/link'
 
-export default async function LoginPage({
+export default async function SignupPage({
     searchParams
 }: {
     searchParams: Promise<{ error?: string }>
@@ -15,7 +15,7 @@ export default async function LoginPage({
             <div className="max-w-md w-full p-8 md:p-10 rounded-3xl bg-[#0b1a29]/80 backdrop-blur-sm shadow-2xl border border-[#1a365d] mb-auto mt-auto">
                 <div className="text-center mb-10">
                     <h1 className="text-3xl md:text-4xl font-extralight text-[#E6F0FF] tracking-wide mb-3">BLUE RESET</h1>
-                    <p className="text-[#9FB3CC] font-light text-sm tracking-wide">Vuelve a tu centro</p>
+                    <p className="text-[#9FB3CC] font-light text-sm tracking-wide">Comienza tu viaje</p>
                 </div>
 
                 <form className="space-y-6">
@@ -48,19 +48,19 @@ export default async function LoginPage({
 
                     <div className="pt-6 flex flex-col gap-4">
                         <button
-                            formAction={login}
+                            formAction={signup}
                             className="w-full py-4 px-4 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-300 font-light tracking-widest uppercase text-xs shadow-lg shadow-blue-900/20"
                         >
-                            Entrar al programa
+                            Crear cuenta
                         </button>
                     </div>
                 </form>
 
                 <div className="mt-8 text-center">
                     <p className="text-[#9FB3CC] font-light text-sm">
-                        ¿Aún no tienes cuenta?{' '}
-                        <Link href="/signup" className="text-blue-400 hover:text-blue-300 transition-colors">
-                            Crea una aquí
+                        ¿Ya tienes cuenta?{' '}
+                        <Link href="/login" className="text-blue-400 hover:text-blue-300 transition-colors">
+                            Inicia sesión
                         </Link>
                     </p>
                 </div>
