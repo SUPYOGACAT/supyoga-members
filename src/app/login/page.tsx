@@ -1,7 +1,14 @@
 import { login, signup } from './actions'
 import Footer from '../components/Footer'
 
-export default function LoginPage() {
+export default async function LoginPage({
+    searchParams
+}: {
+    searchParams: Promise<{ error?: string }>
+}) {
+    const params = await searchParams
+    const error = params.error
+
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#07131e] text-slate-200 px-6 py-12">
             <div className="max-w-md w-full p-8 md:p-10 rounded-3xl bg-[#0b1a29]/80 backdrop-blur-sm shadow-2xl border border-[#1a365d] mb-auto mt-auto">
@@ -31,6 +38,12 @@ export default function LoginPage() {
                             className="w-full bg-[#0d2136]/50 border border-[#1e3a5f]/50 rounded-xl px-5 py-4 text-[#E6F0FF] font-light text-sm focus:outline-none focus:border-blue-400/50 focus:bg-[#0d2136] transition-colors placeholder:text-slate-600"
                         />
                     </div>
+
+                    {error && (
+                        <div className="bg-red-900/10 border border-red-500/20 rounded-xl px-4 py-3 text-red-400/90 text-sm font-light text-center">
+                            {error}
+                        </div>
+                    )}
 
                     <div className="pt-6 flex flex-col gap-4">
                         <button
