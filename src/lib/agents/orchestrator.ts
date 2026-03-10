@@ -115,12 +115,14 @@ export const Orchestrator = {
 
         // 5. State Transitions (Day progression)
         if (action_type === 'REFLECTION_SUBMITTED') {
-            let currentDay = parseInt(state.current_stage.replace(/\D/g, '')) || 1;
-            if (state.current_stage === 'NotStarted') currentDay = 1;
-
-            let nextState = `CompletedDay${currentDay}`;
-            if (currentDay === 7) nextState = 'CompletedReset';
-            await StateManager.advanceStage(user_id, nextState);
+            if (state.current_stage === 'NotStarted') {
+                await StateManager.advanceStage(user_id, 'ActiveDay1');
+            } else {
+                const currentDay = parseInt(state.current_stage.replace(/\D/g, '')) || 1;
+                let nextState = `CompletedDay${currentDay}`;
+                if (currentDay === 7) nextState = 'CompletedReset';
+                await StateManager.advanceStage(user_id, nextState);
+            }
         }
 
         if (action_type === 'START_NEXT_DAY') {
