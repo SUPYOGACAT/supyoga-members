@@ -3,7 +3,7 @@ export interface DailyModule {
     theme: string;
     title: string;
     description: string;
-    videoUrl: string; // Placeholder for now
+    videoUrl: string;
     practice: string;
     microAction: {
         id: string;
@@ -11,89 +11,120 @@ export interface DailyModule {
     };
 }
 
+// Day 0 is a special module shown before the main journey begins
+export interface WelcomeModule {
+    videoUrl: string;
+    title: string;
+    subtitle: string;
+    description: string;
+}
+
+export interface DayZeroModule {
+    videoUrl: string;
+    theme: string;
+    title: string;
+    description: string;
+    practice: string;
+}
+
+export const welcomeModule: WelcomeModule = {
+    videoUrl: 'https://www.youtube.com/watch?v=Ja21lyFZUhQ',
+    title: 'Blue Reset',
+    subtitle: 'Tu viaje de 7 días hacia la calma interior',
+    description: 'Un reset completo del sistema nervioso a través de prácticas inspiradas en el entorno aquático. Calma, restaura y regula desde dentro.'
+};
+
+export const dayZeroModule: DayZeroModule = {
+    videoUrl: 'https://www.youtube.com/watch?v=EsVnVF6PZuo',
+    theme: 'Test Inicial + Intención',
+    title: 'Antes de Empezar',
+    description: 'Hoy es el punto de partida. Antes de lanzarte al agua, toma un momento para saber desde dónde partes. Registra cómo te sientes ahora y define tu intención para estos 7 días. La respiración 4-2-6 será tu ancla durante todo el recorrido.',
+    practice: 'Respira 4 segundos inhalando, retén 2, exhala 6. Repite 3 veces y anota cómo se siente.'
+};
+
 export const blueResetJourney: DailyModule[] = [
     {
         day: 1,
-        theme: 'Pausa',
+        theme: 'Calmar',
         title: 'El Arte de Parar',
-        description: 'Antes de poder movernos, antes de poder respirar profundamente, debemos aprender a parar. Hoy simplemente consiste en observar el espacio entre las acciones.',
+        description: 'Hoy comienzas el reset con la práctica más importante: parar. A través de la respiración 4-2-6 y el sonido del agua, le dices al sistema nervioso que puede soltar la guardia. La calma no es pasividad, es la base desde donde todo lo demás es posible.',
         videoUrl: 'https://www.youtube.com/watch?v=jNn3j7h_1NE',
-        practice: 'Siéntate en silencio durante 2 minutos. No hagas nada más.',
+        practice: 'Respiración 4-2-6: inhala 4 segundos, retén 2, exhala 6. Repite durante 5 minutos con los ojos cerrados o mirando el horizonte.',
         microAction: {
             id: 'action_001',
-            description: 'Bebe un vaso de agua, prestando atención a la temperatura.'
+            description: 'Antes de tu próxima comida, haz 3 ciclos de respiración 4-2-6 con los ojos cerrados.'
         }
     },
     {
         day: 2,
-        theme: 'Respira',
-        title: 'Encontrando el Ancla',
-        description: 'La respiración conecta la mente con el cuerpo. Encontrar un ritmo calmado y constante regula el sistema nervioso.',
-        videoUrl: '/videos/day2-breathe.mp4',
-        practice: 'Respiración en caja: inhala en 4s, sostén en 4s, exhala en 4s, sostén en 4s.',
+        theme: 'Restaurar',
+        title: 'Caminata Sensorial',
+        description: 'Hoy restauras tu mente a través de los sentidos. Una caminata consciente activa la percepción del cuerpo desde los pies hasta los hombros, llevandte de la mente al cuerpo. Si puedes, camina descalza sobre arena o tierra. Si no, cualquier entorno sirve.',
+        videoUrl: 'https://www.youtube.com/watch?v=ZUEQyDO5Pbg',
+        practice: 'Sal a caminar lentamente 10-15 minutos. Presta atención completa a la textura bajo tus pies, el balanceo de tu cadera, el movimiento de tus brazos. Sin auriculares. Solo presencia.',
         microAction: {
             id: 'action_002',
-            description: 'Haz 3 respiraciones conscientes antes de tu próxima comida.'
+            description: 'Frota despacio las manos y pásalas por las mejillas, las orejas y la cabeza. Tómate 60 segundos de autocontacto consciente.'
         }
     },
     {
         day: 3,
-        theme: 'Siente',
-        title: 'Reconexión Sensorial',
-        description: 'Observa las sensaciones físicas en tu cuerpo sin intentar cambiarlas.',
-        videoUrl: '/videos/day3-feel.mp4',
-        practice: 'Un escaneo corporal sencillo desde los dedos de los pies hasta la cabeza.',
+        theme: 'Regular',
+        title: 'El Ritmo del Mar',
+        description: 'Hoy usas el sonido del mar como guía para regular tu ritmo cardíaco. Con una respiración simétrica de 5-5 (inhala 5, exhala 5), o siguiendo el vaivén de las olas, entras en coherencia cardíaca: el estado en que corazón y sistema nervioso se sincronizan de forma natural.',
+        videoUrl: 'https://www.youtube.com/watch?v=WPYKuGXO4rA',
+        practice: 'Siéntate con los ojos cerrados o mirando el horizonte. Inhala 5 segundos, exhala 5 segundos. Deja que los pensamientos pasen como nubes. Mantén la práctica durante 5-10 minutos.',
         microAction: {
             id: 'action_003',
-            description: 'Sostén un cubito de hielo o lávate las manos con agua muy fría.'
+            description: 'Pon 3 minutos de sonido del mar en el móvil y simplemente escúchalo. Sin hacer nada más.'
         }
     },
     {
         day: 4,
-        theme: 'Muévete',
-        title: 'Flujo Consciente',
-        description: 'Introduce un movimiento suave y fluido inspirado en las propiedades del agua y el SUP Yoga.',
-        videoUrl: '/videos/day4-move.mp4',
-        practice: 'Flujo de movilidad espinal en el suelo.',
+        theme: 'Liberar',
+        title: 'Sacudir y Soltar',
+        description: 'La tensión acumulada suele vivir en el cuerpo, no en la mente. Hoy la liberamos con movimiento: sacudidas desde las manos, círculos de hombros, aperturas de brazos y un reset físico completo. El cuerpo sabe cómo soltar cuando le das permiso.',
+        videoUrl: 'https://www.youtube.com/watch?v=hWouHnlqk8g',
+        practice: 'Ponte de pie. Durante 5 minutos: sacude manos y brazos con energía, haz círculos de hombros, abre y cierra los brazos como olas. Termina frotando las manos y pasándolas por tu cuerpo desde la cabeza hasta los pies.',
         microAction: {
             id: 'action_004',
-            description: 'Estira los brazos por encima de la cabeza durante 30 segundos al despertarte.'
+            description: 'Cada vez que sientas tensión en los hombros hoy, haz 3 círculos hacia atrás y un suspiro audible.'
         }
     },
     {
         day: 5,
-        theme: 'Suelta',
-        title: 'Dejando Ir',
-        description: 'La tensión a menudo se retiene físicamente. Hoy practicamos el acto físico de soltar nuestro agarre.',
-        videoUrl: '/videos/day5-release.mp4',
-        practice: 'Relajación muscular progresiva centrada en la mandíbula y los hombros.',
+        theme: 'Abrir el Corazón',
+        title: 'La Mano en el Pecho',
+        description: 'Hoy practicamos la gratitud como herramienta de regulación del sistema nervioso. Una mano sobre el corazón, una respiración 4-6, y un gesto de agradecimiento hacia algo que te haya sostenido esta semana. Simple, breve, y profundamente transformador.',
+        videoUrl: 'https://www.youtube.com/watch?v=fB2ZwJ4Y5Ec',
+        practice: 'Coloca tu mano derecha sobre el pecho. Inhala 4 segundos, exhala 6. Piensa en una sola cosa que te haya sostenido esta semana. Siéntela. Sonríe internamente. Inhala profundo y exhala soltando todo el aire.',
         microAction: {
             id: 'action_005',
-            description: 'Suspira de forma audible tres veces al cambiar del trabajo al descanso.'
+            description: 'Escribe una sola frase de gratitud en tu libreta o en el móvil. Sin elaborar. Lo primero que salga.'
         }
     },
     {
         day: 6,
-        theme: 'Integra',
-        title: 'La Ola Diaria',
-        description: 'Estas prácticas no son eventos aislados. Son herramientas para integrarlas en el ritmo de la vida cotidiana.',
-        videoUrl: '/videos/day6-integrate.mp4',
-        practice: 'Combina respiración y movimiento en un flujo continuo de 5 minutos.',
+        theme: 'Coherencia',
+        title: 'El Mar Dentro de Ti',
+        description: 'Hoy llegamos a una de las meditaciones más potentes del reset: "El mar dentro de ti". Imaginas tu respiración moviéndose como una ola, y al final despiertas la sensación física de tu propio corazón desde dentro, a través de la interocepción. Una práctica para llevar siempre contigo.',
+        videoUrl: 'https://www.youtube.com/watch?v=z7NdLy39YkI',
+        practice: 'Siéntate en silencio y sigue la meditación guiada. Imagina que tu inhalación es una ola que llega a la orilla y tu exhalación es el mar retirándose. Al final, lleva la atención al latido de tu corazón, sin buscarlo con prisa, solo esperando sentirlo.',
         microAction: {
             id: 'action_006',
-            description: 'Vincula tu respiración profunda a un hábito diario (como preparar té/café).'
+            description: 'En cualquier momento de tensión hoy, cierra los ojos 30 segundos e imagina una ola entrando y saliendo con tu respiración.'
         }
     },
     {
         day: 7,
-        theme: 'Vive en Azul',
-        title: 'El Viaje Continua',
-        description: 'Has completado el reseteo. Ahora, el agua permanece disponible para ti siempre.',
-        videoUrl: '/videos/day7-liveblue.mp4',
-        practice: 'Una práctica de tu elección. ¿Qué necesita tu cuerpo hoy?',
+        theme: 'Integrar y Cerrar',
+        title: 'El Viaje Continúa',
+        description: 'Has llegado al último día del Reset Azul. Hoy integras todo lo que has vivido. Vuelves a la respiración del Día 1, rescribes cómo te sientes ahora frente a cómo empezaste, y eliges un micro-hábito de 5 minutos para llevar contigo. El reset no termina hoy: comienza a vivir en ti.',
+        videoUrl: 'https://www.youtube.com/watch?v=7S7yUnjNcD0',
+        practice: 'Haz la respiración 4-2-6 durante 5 minutos. Luego escribe: ¿Cómo estaba? ¿Cómo estoy ahora? ¿Qué he descubierto de mí? Por último, elige un micro-hábito de esta semana para seguir practicando.',
         microAction: {
             id: 'action_007',
-            description: 'Comprométete a llevar adelante una micro-acción.'
+            description: 'Comprométete con un único micro-hábito de los que has practicado esta semana. Escríbelo y ponlo en algún lugar visible.'
         }
     }
 ];

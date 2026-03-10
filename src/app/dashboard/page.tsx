@@ -9,11 +9,11 @@ import CompanionIntro from './CompanionIntro'
 import WaterDropsCounter from './WaterDropsCounter'
 import MicroInsight from './MicroInsight'
 import UserMenu from './UserMenu'
-import { blueResetJourney } from '@/data/journey'
+import { blueResetJourney, dayZeroModule } from '@/data/journey'
 import { ResultEngine } from '@/lib/agents/result_engine'
 
 const JOURNEY_STAGES = [
-    'Superficie', 'Flotando', 'Inmersión', 'Fluidez', 'Liberación', 'Integración', 'Vida en Azul'
+    'Calmar', 'Restaurar', 'Regular', 'Liberar', 'Abrir', 'Coherencia', 'Integrar'
 ];
 
 export default async function DashboardPage({
