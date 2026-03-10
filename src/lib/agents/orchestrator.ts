@@ -5,7 +5,7 @@ import { GamificationAgent } from './gamification';
 import { RegulationAgent } from './regulation';
 import { CompanionAgent } from './companion';
 import { PatternAgent } from './pattern';
-import { blueResetJourney } from '../../data/journey';
+import { blueResetJourney, dayZeroModule } from '../../data/journey';
 
 // The Orchestrator acts as the main routing switch that processes incoming events.
 export const Orchestrator = {
@@ -50,7 +50,7 @@ export const Orchestrator = {
             // Update reflection state with sentiment in db
             const supabase = await (await import('@/utils/supabase/server')).createClient();
             let currentDay = parseInt(state.current_stage.replace(/\D/g, '')) || 1;
-            if (state.current_stage === 'NotStarted') currentDay = 1;
+            if (state.current_stage === 'NotStarted') currentDay = 0;
 
             await supabase.from('reflections').insert({
                 user_id,
@@ -81,7 +81,7 @@ export const Orchestrator = {
             }
 
             // Now trigger Companion with context
-            const dayContext = blueResetJourney.find(d => d.day === currentDay);
+            const dayContext = currentDay === 0 ? dayZeroModule : blueResetJourney.find(d => d.day === currentDay);
             companionReply = await CompanionAgent.generateResponse(
                 user?.name || "explorador/a",
                 dayContext?.theme || "Pausa",

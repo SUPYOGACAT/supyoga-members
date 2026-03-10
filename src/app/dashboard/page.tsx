@@ -47,7 +47,7 @@ export default async function DashboardPage({
     const stage = userState?.current_stage || 'NotStarted';
 
     // Logic to determine active day (progress)
-    let activeDayNum = 1;
+    let activeDayNum = stage === 'NotStarted' ? 0 : 1;
     const isStageCompleted = stage.startsWith('CompletedDay') || stage === 'CompletedReset';
 
     if (stage === 'CompletedReset') {
@@ -63,14 +63,16 @@ export default async function DashboardPage({
     if (params.day) {
         const requestedDay = parseInt(params.day);
         const maxAccessibleDay = stage === 'CompletedReset' ? 7 : activeDayNum;
-        if (!isNaN(requestedDay) && requestedDay >= 1 && requestedDay <= maxAccessibleDay) {
+        if (!isNaN(requestedDay) && requestedDay >= 0 && requestedDay <= maxAccessibleDay) {
             viewDayNum = requestedDay;
         }
     }
 
     const isViewingPastDay = viewDayNum < activeDayNum || (viewDayNum === activeDayNum && isStageCompleted);
 
-    const currentModule = blueResetJourney.find(m => m.day === viewDayNum) || blueResetJourney[0];
+    const currentModule = viewDayNum === 0
+        ? { ...dayZeroModule, day: 0, microAction: { id: '0', description: '' } }
+        : (blueResetJourney.find(m => m.day === viewDayNum) || blueResetJourney[0]);
     const currentDayReflection = dayReflections?.find(r => r.day === viewDayNum);
 
     let resultSummary = "";
@@ -109,6 +111,8 @@ export default async function DashboardPage({
                             const isAccessible = dayIndex <= activeDayNum || stage === 'CompletedReset';
 
                             const indicator = (isPast || (isCurrent && isStageCompleted)) ? '●' : isCurrent ? '●' : '○';
+
+                            // Highlight dot if it's the active view, except if we are on day 0 (none will be highlighted)
                             const isActiveView = dayIndex === viewDayNum;
 
                             return (
