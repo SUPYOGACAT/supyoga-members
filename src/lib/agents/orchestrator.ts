@@ -83,8 +83,8 @@ export const Orchestrator = {
             // Now trigger Companion with context
             const dayContext = blueResetJourney.find(d => d.day === currentDay);
             companionReply = await CompanionAgent.generateResponse(
-                user?.name || "Traveler",
-                dayContext?.theme || "Pause",
+                user?.name || "explorador/a",
+                dayContext?.theme || "Pausa",
                 text,
                 {
                     isLowEmotion: sentiment === 'low_emotion',
