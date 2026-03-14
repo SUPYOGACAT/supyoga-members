@@ -42,7 +42,7 @@ export default function UserMenu({ userName }: { userName?: string }) {
                 <span className="text-[10px] uppercase tracking-[0.2em] text-blue-200/60 transition-colors hover:text-blue-200">
                     {displayText}
                 </span>
-                <span className={`text-[8px] text-blue-400/50 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
+                <span className={`text-[8px] text-blue-400/80 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>▼</span>
             </button>
 
             {isOpen && (
@@ -52,7 +52,7 @@ export default function UserMenu({ userName }: { userName?: string }) {
                         <button
                             onClick={handleLogout}
                             disabled={isLoggingOut}
-                            className="w-full text-left px-6 py-3 text-sm font-light text-slate-300 hover:bg-blue-900/20 hover:text-white transition-colors flex items-center gap-3 disabled:opacity-50"
+                            className="w-full text-left px-6 py-3 text-sm font-normal text-slate-300 hover:bg-blue-900/20 hover:text-white transition-colors flex items-center gap-3 disabled:opacity-50"
                         >
                             {isLoggingOut ? (
                                 <span className="w-3 h-3 border border-slate-300 border-t-transparent rounded-full animate-spin"></span>

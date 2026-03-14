@@ -33,7 +33,7 @@ export default function MicroInsight({ sentiment, day }: MicroInsightProps) {
                 <span className="text-blue-400/40 text-[9px] uppercase tracking-[0.3em]">Observación del Sistema</span>
                 <span className="text-blue-400/30 text-xs">〰</span>
             </div>
-            <p className="text-slate-400/80 text-sm font-light italic leading-relaxed">"{insight}"</p>
+            <p className="text-slate-400/80 text-sm font-normal italic leading-relaxed">"{insight}"</p>
         </div>
     );
 }

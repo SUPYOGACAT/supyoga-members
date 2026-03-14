@@ -9,7 +9,7 @@ export default function Footer() {
                 alt="SupYoga Barcelona"
                 className="h-8 w-auto mix-blend-screen opacity-70"
             />
-            <p className="text-[#9FB3CC]/40 text-[10px] tracking-[0.3em] uppercase">
+            <p className="text-slate-300/40 text-[10px] tracking-[0.3em] uppercase">
                 Blue Reset by SupYoga Barcelona
             </p>
         </footer>

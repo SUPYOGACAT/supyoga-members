@@ -106,7 +106,7 @@ export default async function AdminPage() {
     const allMembers = [...realMembers, ...SIMULATED_MEMBERS]
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-[#050c14] to-[#0a1826] text-slate-200 p-6 md:p-12">
+        <div className="min-h-screen bg-gradient-to-b from-[#0a1826] to-[#0d2136] text-slate-200 p-6 md:p-12">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
@@ -115,8 +115,8 @@ export default async function AdminPage() {
                         <Link href="/dashboard" className="text-[10px] uppercase tracking-[0.3em] text-blue-200/30 hover:text-blue-200/60 transition-colors">
                             ← Volver al Dashboard
                         </Link>
-                        <h1 className="text-3xl font-extralight text-[#E6F0FF] mt-3 tracking-wide">Panel de administración</h1>
-                        <p className="text-[#9FB3CC] font-light text-sm mt-1">Blue Reset · Miembros</p>
+                        <h1 className="text-3xl font-normal text-[#E6F0FF] mt-3 tracking-wide">Panel de administración</h1>
+                        <p className="text-slate-300 font-normal text-sm mt-1">Blue Reset · Miembros</p>
                     </div>
                     <form action={adminLogout}>
                         <button type="submit" className="text-[10px] uppercase tracking-[0.25em] text-slate-500 hover:text-red-400 transition-colors">
@@ -129,7 +129,7 @@ export default async function AdminPage() {
                 <div className="bg-amber-900/10 border border-amber-500/20 rounded-2xl px-6 py-4 mb-8 flex items-start gap-4">
                     <span className="text-amber-400/70 text-lg mt-0.5">◆</span>
                     <div>
-                        <p className="text-amber-300/80 text-sm font-light">
+                        <p className="text-amber-300/80 text-sm font-normal">
                             <strong className="font-medium">Datos de simulación activos.</strong> Los últimos {SIMULATED_MEMBERS.length} miembros de la tabla son ficticios para ilustrar el funcionamiento del panel.
                             {realMembers.length > 0 ? ` Se muestran ${realMembers.length} miembros reales.` : ' Aún no hay miembros reales registrados.'}
                         </p>

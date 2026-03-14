@@ -59,7 +59,7 @@ export default function ReflectionForm({ day }: { day: number }) {
                 {patternInsight && (
                     <div className="mt-12 max-w-xl mx-auto text-center px-6 py-8 border-t border-blue-500/10 animate-fade-in animate-delay-300">
                         <span className="text-blue-400/20 text-[8px] uppercase tracking-[0.4em] block mb-4">Nota del Viaje</span>
-                        <p className="text-[#9FB3CC] font-light text-base md:text-lg leading-relaxed italic opacity-90 drop-shadow-sm">
+                        <p className="text-slate-300 font-normal text-base md:text-lg leading-relaxed italic opacity-90 drop-shadow-sm">
                             {patternInsight}
                         </p>
                     </div>
@@ -70,7 +70,7 @@ export default function ReflectionForm({ day }: { day: number }) {
                     onClick={() => {
                         window.location.reload();
                     }}
-                    className="mt-12 px-8 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-200 border border-blue-500/30 rounded-xl transition-all font-light tracking-widest uppercase text-xs backdrop-blur-sm shadow-lg shadow-blue-900/20"
+                    className="mt-12 px-8 py-3 bg-blue-600/10 hover:bg-blue-600/20 text-blue-200 border border-blue-500/30 rounded-xl transition-all font-normal tracking-widest uppercase text-xs backdrop-blur-sm shadow-lg shadow-blue-900/20"
                 >
                     Cerrar Práctica de Hoy
                 </button>
@@ -85,7 +85,7 @@ export default function ReflectionForm({ day }: { day: number }) {
                     value={reflection}
                     onChange={(e) => setReflection(e.target.value)}
                     placeholder="¿Qué has notado en tu cuerpo? ¿Qué ha cambiado en ti durante estos minutos?"
-                    className="w-full min-h-[180px] bg-[#0d2136]/50 border border-[#1e3a5f]/60 rounded-3xl p-8 text-[#C8D6EA] placeholder-[#9FB3CC]/40 focus:outline-none focus:border-blue-400/40 focus:ring-1 focus:ring-blue-400/20 transition-all resize-none shadow-inner text-lg font-light leading-[1.6] backdrop-blur-md"
+                    className="w-full min-h-[180px] bg-[#0d2136]/50 border border-[#1e3a5f]/60 rounded-3xl p-8 text-slate-200 placeholder-[#9FB3CC]/40 focus:outline-none focus:border-blue-400/40 focus:ring-1 focus:ring-blue-400/20 transition-all resize-none shadow-inner text-lg font-normal leading-[1.6] backdrop-blur-md"
                     disabled={isSubmitting}
                 />
 
@@ -94,7 +94,7 @@ export default function ReflectionForm({ day }: { day: number }) {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4 px-2">
-                <p className="text-[#9FB3CC]/70 text-sm font-light italic leading-relaxed text-center sm:text-left">No hay una respuesta correcta. Simplemente escribe lo que esté presente.</p>
+                <p className="text-slate-300/70 text-sm font-normal italic leading-relaxed text-center sm:text-left">No hay una respuesta correcta. Simplemente escribe lo que esté presente.</p>
                 {error && <p className="text-rose-300/80 text-sm font-medium">{error}</p>}
             </div>
 
@@ -102,7 +102,7 @@ export default function ReflectionForm({ day }: { day: number }) {
                 <button
                     type="submit"
                     disabled={isSubmitting || reflection.trim().length === 0}
-                    className="px-12 py-4 bg-blue-600/10 hover:bg-blue-600/20 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-light tracking-widest uppercase text-xs shadow-lg shadow-blue-900/10 disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm w-full sm:w-auto hover:shadow-blue-500/5 hover:-translate-y-0.5"
+                    className="px-12 py-4 bg-blue-600/10 hover:bg-blue-600/20 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-normal tracking-widest uppercase text-xs shadow-lg shadow-blue-900/10 disabled:opacity-20 disabled:cursor-not-allowed backdrop-blur-sm w-full sm:w-auto hover:shadow-blue-500/5 hover:-translate-y-0.5"
                 >
                     {isSubmitting ? 'Descansando...' : 'Marcar el Momento de Hoy'}
                 </button>

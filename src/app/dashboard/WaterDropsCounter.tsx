@@ -21,11 +21,11 @@ export default function WaterDropsCounter({ total, justEarned = 0 }: WaterDropsC
     return (
         <div className="flex items-center gap-2 relative">
             <span className="text-blue-300/50 text-sm select-none" title="Gotas de agua">💧</span>
-            <span className="text-blue-100/60 text-sm font-light tracking-widest">{total}</span>
+            <span className="text-blue-100/60 text-sm font-normal tracking-widest">{total}</span>
 
             {showBonus && (
                 <span
-                    className="absolute -top-5 left-0 text-blue-300 text-xs font-light animate-bounce-up pointer-events-none"
+                    className="absolute -top-5 left-0 text-blue-300 text-xs font-normal animate-bounce-up pointer-events-none"
                     style={{
                         animation: 'floatUp 2.5s ease-out forwards',
                     }}

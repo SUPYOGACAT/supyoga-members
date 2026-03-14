@@ -9,9 +9,9 @@ export async function GET() {
         return NextResponse.json({ error: 'No estás logueado. Inicia sesión primero.' }, { status: 401 });
     }
 
-    // Reset user state to Day 1
+    // Reset user state to NotStarted
     const { error } = await supabase.from('user_states').update({
-        current_stage: 'ActiveDay1',
+        current_stage: 'NotStarted',
         current_streak: 0,
         water_drops: 0
     }).eq('user_id', user.id);
@@ -22,7 +22,7 @@ export async function GET() {
 
     return NextResponse.json({
         success: true,
-        message: 'Tu cuenta ha sido reseteada al Día 1. Ya puedes volver al Dashboard.',
-        action: 'Ve a http://localhost:3000/dashboard'
+        message: 'Tu cuenta ha sido reseteada al Inicio (Día 0). Ya puedes volver al Dashboard.',
+        action: 'Refresca la página del dashboard.'
     });
 }

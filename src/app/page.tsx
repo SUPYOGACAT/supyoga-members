@@ -13,13 +13,13 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#050c14] via-[#071220] to-[#050c14] text-slate-200 selection:bg-blue-900/30 font-light overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a1826] via-[#0d2136] to-[#0a1826] text-slate-200 selection:bg-blue-900/30 font-normal overflow-hidden">
       {/* Navigation */}
       <header className="flex justify-between items-center p-6 md:p-10 max-w-6xl mx-auto">
-        <span className="text-sm font-light text-blue-200/60 tracking-[0.3em] uppercase">Blue Reset</span>
+        <span className="text-sm font-normal text-blue-200/60 tracking-[0.3em] uppercase">Blue Reset</span>
         <Link
           href="/login"
-          className="text-[11px] uppercase tracking-[0.25em] text-blue-200/50 hover:text-blue-200 transition-colors"
+          className="text-[11px] uppercase tracking-[0.25em] text-blue-200/80 hover:text-blue-200 transition-colors"
         >
           Iniciar sesión
         </Link>
@@ -29,22 +29,22 @@ export default async function HomePage() {
       <main className="max-w-4xl mx-auto px-6 pt-20 md:pt-32 pb-32 text-center">
         {/* Tag */}
         <div className="inline-block mb-10">
-          <span className="text-[10px] uppercase tracking-[0.4em] text-blue-400/50 border border-blue-500/20 rounded-full px-5 py-2">
+          <span className="text-[10px] uppercase tracking-[0.4em] text-blue-400/80 border border-blue-500/20 rounded-full px-5 py-2">
             7 días · Blue Health
           </span>
         </div>
 
         {/* Title */}
-        <h1 className="text-6xl md:text-8xl font-extralight text-[#E6F0FF] mb-8 tracking-tighter leading-[0.95] opacity-95">
+        <h1 className="text-6xl md:text-8xl font-normal text-[#E6F0FF] mb-8 tracking-tighter leading-[0.95] opacity-95">
           Resetea<br />
           <span className="text-blue-300/70">desde dentro</span>
         </h1>
 
         {/* Description */}
-        <p className="text-[#C8D6EA] text-xl md:text-2xl font-light leading-[1.6] max-w-xl mx-auto mb-4">
+        <p className="text-slate-200 text-xl md:text-2xl font-normal leading-[1.6] max-w-xl mx-auto mb-4">
           Un programa de 7 días para calmar el sistema nervioso, restaurar la energía y reconectar con lo esencial.
         </p>
-        <p className="text-[#9FB3CC] text-base md:text-lg font-light mb-16 max-w-lg mx-auto">
+        <p className="text-slate-300 text-base md:text-lg font-normal mb-16 max-w-lg mx-auto">
           Inspirado en el entorno acuático. Diseñado para tu vida real.
         </p>
 
@@ -52,7 +52,7 @@ export default async function HomePage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             href="/login"
-            className="px-10 py-4 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-light tracking-widest uppercase text-xs shadow-lg shadow-blue-900/20 hover:shadow-blue-500/10 hover:-translate-y-0.5"
+            className="px-10 py-4 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-normal tracking-widest uppercase text-xs shadow-lg shadow-blue-900/20 hover:shadow-blue-500/10 hover:-translate-y-0.5"
           >
             Comenzar mi reset →
           </Link>
@@ -87,8 +87,8 @@ export default async function HomePage() {
           ].map((item) => (
             <div key={item.title} className="text-center px-6 py-10 bg-[#0b1a29]/30 border border-[#1a365d]/20 rounded-3xl">
               <div className="text-3xl mb-4 opacity-70">{item.icon}</div>
-              <h3 className="text-[#E6F0FF] font-light text-lg mb-3">{item.title}</h3>
-              <p className="text-[#9FB3CC] font-light text-sm leading-relaxed">{item.text}</p>
+              <h3 className="text-[#E6F0FF] font-normal text-lg mb-3">{item.title}</h3>
+              <p className="text-slate-300 font-normal text-sm leading-relaxed">{item.text}</p>
             </div>
           ))}
         </div>
@@ -98,11 +98,11 @@ export default async function HomePage() {
       <footer className="max-w-4xl mx-auto px-6 pb-20 text-center">
         <Link
           href="/login"
-          className="inline-block px-10 py-4 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-light tracking-widest uppercase text-xs shadow-lg shadow-blue-900/20 hover:shadow-blue-500/10 hover:-translate-y-0.5 mb-8"
+          className="inline-block px-10 py-4 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-normal tracking-widest uppercase text-xs shadow-lg shadow-blue-900/20 hover:shadow-blue-500/10 hover:-translate-y-0.5 mb-8"
         >
           Empezar ahora →
         </Link>
-        <p className="text-[#9FB3CC]/40 text-xs tracking-widest">Blue Reset by SupYoga Barcelona</p>
+        <p className="text-slate-300/40 text-xs tracking-widest">Blue Reset by SupYoga Barcelona</p>
       </footer>
     </div>
   )

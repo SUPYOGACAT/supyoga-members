@@ -5,7 +5,7 @@ export default function CompanionResponseCard({ response }: { response: string }
             <div className="flex flex-col items-center gap-8 relative z-10 text-center">
                 <div className="text-4xl opacity-90 mix-blend-screen drop-shadow-sm">🌊</div>
                 <div>
-                    <p className="text-[#E6F0FF] italic font-light leading-[1.6] text-xl md:text-2xl tracking-wide px-4">
+                    <p className="text-[#E6F0FF] italic font-normal leading-[1.6] text-xl md:text-2xl tracking-wide px-4">
                         {response}
                     </p>
                 </div>

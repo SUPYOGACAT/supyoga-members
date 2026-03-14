@@ -102,7 +102,7 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                     { label: 'Sin empezar', value: notStartedCount, color: 'text-slate-400' },
                 ].map(stat => (
                     <div key={stat.label} className="bg-[#0b1a29]/40 border border-[#1a365d]/30 rounded-2xl p-6">
-                        <div className={`text-3xl font-extralight mb-1 ${stat.color}`}>{stat.value}</div>
+                        <div className={`text-3xl font-normal mb-1 ${stat.color}`}>{stat.value}</div>
                         <div className="text-[10px] uppercase tracking-[0.2em] text-slate-500">{stat.label}</div>
                     </div>
                 ))}
@@ -116,7 +116,7 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                         placeholder="Buscar por nombre o email..."
                         value={search}
                         onChange={e => setSearch(e.target.value)}
-                        className="bg-[#0b1a29]/60 border border-[#1a365d]/40 text-[#E6F0FF] rounded-xl px-4 py-2 outline-none focus:border-blue-500/50 transition-colors placeholder:text-slate-600 font-light text-sm w-64"
+                        className="bg-[#0b1a29]/60 border border-[#1a365d]/40 text-[#E6F0FF] rounded-xl px-4 py-2 outline-none focus:border-blue-500/50 transition-colors placeholder:text-slate-600 font-normal text-sm w-64"
                     />
                     {(['all', 'active', 'completed', 'notstarted'] as const).map(f => (
                         <button
@@ -133,7 +133,7 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                 </div>
                 <button
                     onClick={() => downloadCSV(filteredMembers)}
-                    className="px-6 py-2 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-xl transition-all duration-300 font-light tracking-widest uppercase text-xs flex items-center gap-2"
+                    className="px-6 py-2 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-xl transition-all duration-300 font-normal tracking-widest uppercase text-xs flex items-center gap-2"
                 >
                     <span>⬇</span>
                     Exportar CSV
@@ -158,7 +158,7 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                         <tbody>
                             {filteredMembers.length === 0 ? (
                                 <tr>
-                                    <td colSpan={7} className="text-center py-16 text-slate-500 font-light">
+                                    <td colSpan={7} className="text-center py-16 text-slate-500 font-normal">
                                         No hay miembros que coincidan con el filtro.
                                     </td>
                                 </tr>
@@ -172,11 +172,11 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                                             key={member.id}
                                             className={`border-b border-[#1a365d]/20 hover:bg-blue-900/10 transition-colors ${i % 2 === 0 ? '' : 'bg-[#0a1520]/20'}`}
                                         >
-                                            <td className="px-6 py-4 text-[#E6F0FF] font-light">
+                                            <td className="px-6 py-4 text-[#E6F0FF] font-normal">
                                                 {member.name || <span className="text-slate-500 italic">Sin nombre</span>}
                                             </td>
-                                            <td className="px-6 py-4 text-[#9FB3CC] font-light">{member.email || '—'}</td>
-                                            <td className="px-6 py-4 text-[#9FB3CC] font-light tabular-nums">{formatDate(member.created_at)}</td>
+                                            <td className="px-6 py-4 text-slate-300 font-normal">{member.email || '—'}</td>
+                                            <td className="px-6 py-4 text-slate-300 font-normal tabular-nums">{formatDate(member.created_at)}</td>
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-2">
                                                     <div className="flex gap-0.5">
@@ -193,9 +193,9 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                                                     <span className="text-slate-400 text-xs">{dayNum}/7</span>
                                                 </div>
                                             </td>
-                                            <td className={`px-6 py-4 font-light text-xs ${status.color}`}>{status.label}</td>
-                                            <td className="px-6 py-4 text-blue-300 font-light tabular-nums">{member.water_drops}</td>
-                                            <td className="px-6 py-4 text-[#9FB3CC] font-light tabular-nums text-xs">{formatDate(member.last_interaction)}</td>
+                                            <td className={`px-6 py-4 font-normal text-xs ${status.color}`}>{status.label}</td>
+                                            <td className="px-6 py-4 text-blue-300 font-normal tabular-nums">{member.water_drops}</td>
+                                            <td className="px-6 py-4 text-slate-300 font-normal tabular-nums text-xs">{formatDate(member.last_interaction)}</td>
                                         </tr>
                                     )
                                 })

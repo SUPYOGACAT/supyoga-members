@@ -81,9 +81,9 @@ export default async function DashboardPage({
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-[#050c14] to-[#0a1826] text-slate-200 p-6 md:p-12 selection:bg-blue-900/30 font-light">
+        <div className="min-h-screen bg-gradient-to-b from-[#0a1826] to-[#0d2136] text-slate-200 p-6 md:p-12 selection:bg-blue-900/30 font-normal">
             <header className="flex justify-between items-center mb-16 max-w-4xl mx-auto opacity-70 hover:opacity-100 transition-opacity duration-700">
-                <Link href="/dashboard" className="text-sm font-light text-blue-200 tracking-[0.3em] mix-blend-screen">BLUE RESET</Link>
+                <Link href="/dashboard" className="text-sm font-normal text-blue-200 tracking-[0.3em] mix-blend-screen">BLUE RESET</Link>
                 <div className="flex items-center gap-6 z-50">
                     <WaterDropsCounter total={drops} justEarned={isStageCompleted && viewDayNum === activeDayNum ? 1 : 0} />
                     <div className="w-[1px] h-4 bg-blue-500/20"></div>
@@ -124,7 +124,7 @@ export default async function DashboardPage({
                                         }`}
                                 >
                                     <span className={`text-md bg-[#050c14] px-1 drop-shadow-lg ${isActiveView ? 'drop-shadow-[0_0_8px_rgba(147,197,253,0.5)]' : ''}`}>{indicator}</span>
-                                    <span className="hidden sm:block text-[9px] uppercase tracking-[0.2em] font-light">{stageName}</span>
+                                    <span className="hidden sm:block text-[9px] uppercase tracking-[0.2em] font-normal">{stageName}</span>
                                 </Link>
                             );
                         })}
@@ -135,10 +135,10 @@ export default async function DashboardPage({
                     <div className="absolute -top-64 -right-64 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
 
                     <div className="text-center max-w-3xl mx-auto mb-20 relative z-10">
-                        <h2 className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-[#9FB3CC] mb-8">Enfoque de Hoy</h2>
-                        <h3 className="text-5xl md:text-7xl font-extralight text-[#E6F0FF] mb-10 tracking-tighter opacity-95">Día {currentModule.day}: {currentModule.theme}</h3>
+                        <h2 className="text-[10px] md:text-xs uppercase tracking-[0.4em] text-slate-300 mb-8">Enfoque de Hoy</h2>
+                        <h3 className="text-5xl md:text-7xl font-normal text-[#E6F0FF] mb-10 tracking-tighter opacity-95">Día {currentModule.day}: {currentModule.theme}</h3>
 
-                        <p className="text-[#C8D6EA] leading-[1.6] text-lg md:text-xl font-light max-w-2xl mx-auto">
+                        <p className="text-slate-200 leading-[1.6] text-lg md:text-xl font-normal max-w-2xl mx-auto">
                             {currentModule.description}
                         </p>
                     </div>
@@ -159,9 +159,9 @@ export default async function DashboardPage({
                                     <CompanionIntro day={viewDayNum} dayTheme={currentModule.theme} />
 
                                     <div className="text-center space-y-10">
-                                        <p className="text-[#9FB3CC] font-light italic text-sm">Tómate un momento antes de continuar.</p>
+                                        <p className="text-slate-300 font-normal italic text-sm">Tómate un momento antes de continuar.</p>
                                         <div className="bg-[#0d2136]/60 rounded-3xl p-10 md:p-14 border border-[#1e3a5f]/40 backdrop-blur-md shadow-inner">
-                                            <p className="text-[#E6F0FF] text-xl md:text-2xl font-light leading-[1.6] italic">{currentModule.practice}</p>
+                                            <p className="text-[#E6F0FF] text-xl md:text-2xl font-normal leading-[1.6] italic">{currentModule.practice}</p>
                                         </div>
 
                                         <ReflectionForm day={currentModule.day} />
@@ -171,11 +171,11 @@ export default async function DashboardPage({
                                 <div className="py-20 px-8 bg-gradient-to-b from-blue-900/10 to-transparent rounded-[40px] border border-blue-500/10 text-center animate-fade-in relative overflow-hidden backdrop-blur-sm shadow-inner max-w-2xl mx-auto">
                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/5 to-transparent shimmer-effect"></div>
                                     <div className="text-5xl mb-8 opacity-80">🌊</div>
-                                    <p className="text-[#E6F0FF] font-extralight text-2xl md:text-3xl italic tracking-wide mb-4">El agua está en calma.</p>
-                                    <p className="text-[#C8D6EA] font-light text-lg md:text-xl tracking-wide">Has completado la práctica de este día.</p>
+                                    <p className="text-[#E6F0FF] font-normal text-2xl md:text-3xl italic tracking-wide mb-4">El agua está en calma.</p>
+                                    <p className="text-slate-200 font-normal text-lg md:text-xl tracking-wide">Has completado la práctica de este día.</p>
 
                                     <div className="inline-block mt-14 px-8 py-3 rounded-full border border-blue-500/20 bg-blue-900/30 backdrop-blur-md shadow-lg shadow-blue-900/20">
-                                        <span className="text-blue-200/90 text-sm font-light tracking-[0.2em] uppercase">
+                                        <span className="text-blue-200/90 text-sm font-normal tracking-[0.2em] uppercase">
                                             Día {viewDayNum} Completado
                                         </span>
                                     </div>

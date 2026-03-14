@@ -25,10 +25,10 @@ export default function CompanionIntro({ userName, dayTheme, day }: CompanionInt
 
             <div className="flex items-center justify-center gap-3 mb-6 relative z-10">
                 <span className="text-blue-400/40 text-[10px] tracking-widest">〰</span>
-                <span className="text-[#9FB3CC] text-[10px] uppercase tracking-[0.4em] font-medium">Compañero</span>
+                <span className="text-slate-300 text-[10px] uppercase tracking-[0.4em] font-medium">Compañero</span>
                 <span className="text-blue-400/40 text-[10px] tracking-widest">〰</span>
             </div>
-            <p className="text-[#E6F0FF] font-light italic text-xl md:text-2xl leading-[1.6] relative z-10 tracking-wide drop-shadow-sm px-4">
+            <p className="text-[#E6F0FF] font-normal italic text-xl md:text-2xl leading-[1.6] relative z-10 tracking-wide drop-shadow-sm px-4">
                 "{message}"
             </p>
         </div>
