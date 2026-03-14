@@ -28,8 +28,9 @@ export default async function HomePage() {
       {/* Hero Section */}
       <main className="max-w-3xl mx-auto px-6 pt-20 md:pt-32 pb-12 text-center">
         {/* Title */}
-        <h1 className="text-5xl md:text-7xl font-normal text-[#E6F0FF] mb-12 tracking-tight opacity-95">
-          Bienvenida al Reset Azul
+        <h1 className="text-5xl md:text-7xl font-normal text-blue-300 mb-12 tracking-tight leading-tight opacity-95">
+          Bienvenida al<br />
+          <span className="text-[#E6F0FF]">Reset Azul</span>
         </h1>
 
         {/* Video Preview */}
