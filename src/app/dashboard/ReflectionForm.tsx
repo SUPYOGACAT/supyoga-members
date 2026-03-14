@@ -4,7 +4,7 @@ import { useState } from 'react'
 import CompanionResponseCard from './CompanionResponseCard'
 import { useRouter } from 'next/navigation'
 
-export default function ReflectionForm({ day }: { day: number }) {
+export default function ReflectionForm({ day, practice }: { day: number, practice?: string }) {
     const [reflection, setReflection] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [companionResponse, setCompanionResponse] = useState<string | null>(null)
@@ -93,8 +93,12 @@ export default function ReflectionForm({ day }: { day: number }) {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl pointer-events-none mix-blend-screen"></div>
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-6 sm:gap-4 px-2">
-                <p className="text-slate-300/70 text-sm font-normal italic leading-relaxed text-center sm:text-left">No hay una respuesta correcta. Simplemente escribe lo que esté presente.</p>
+            <div className="flex flex-col justify-center items-center gap-6 px-2">
+                {practice && (
+                    <p className="text-slate-300 font-normal italic text-base md:text-lg leading-relaxed text-center max-w-xl mx-auto opacity-80">
+                        {practice}
+                    </p>
+                )}
                 {error && <p className="text-rose-300/80 text-sm font-medium">{error}</p>}
             </div>
 
