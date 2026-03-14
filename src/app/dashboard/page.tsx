@@ -98,13 +98,43 @@ export default async function DashboardPage({
                     <p className="text-slate-200 text-lg md:text-xl font-normal tracking-wide mb-2">Tu Reset Azul</p>
                     <div className="flex justify-center gap-1.5 mb-2">
                         {[1, 2, 3, 4, 5, 6, 7].map((dayNum) => {
-                            let status = '⬜'; // Future
-                            if (dayNum < activeDayNum || (stage === 'CompletedReset' && dayNum <= 7) || (isStageCompleted && dayNum === activeDayNum)) {
-                                status = '🟦'; // Past or completed
-                            } else if (dayNum === activeDayNum) {
-                                status = '🔲'; // Current Active
+                            let isAccessible = dayNum <= activeDayNum || stage === 'CompletedReset';
+                            let isPast = dayNum < activeDayNum || (stage === 'CompletedReset' && dayNum <= 7) || (isStageCompleted && dayNum === activeDayNum);
+                            let isCurrent = dayNum === activeDayNum && stage !== 'CompletedReset' && !isStageCompleted;
+                            
+                            let boxClass = "w-6 h-6 rounded-sm transition-all duration-500 flex items-center justify-center text-[10px] sm:text-xs font-mono font-medium ";
+                            
+                            if (isPast) {
+                                boxClass += "bg-blue-600 shadow-[0_0_12px_rgba(37,99,235,0.6)] text-white";
+                            } else if (isCurrent) {
+                                boxClass += "bg-blue-900/40 border-[1.5px] border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.5)] text-blue-300";
+                            } else {
+                                boxClass += "bg-slate-800/40 border border-slate-700/50 text-slate-500";
                             }
-                            return <span key={dayNum} className="text-base">{status}</span>
+
+                            const isActiveView = dayNum === viewDayNum;
+                            const viewHighlight = isActiveView ? 'ring-2 ring-blue-300 ring-offset-2 ring-offset-[#0a1826] scale-110 shadow-lg' : '';
+
+                            if (isAccessible) {
+                                return (
+                                    <Link 
+                                        key={dayNum} 
+                                        href={`/dashboard?day=${dayNum}`} 
+                                        className={`block relative z-50 cursor-pointer animate-fade-in hover:scale-110 hover:shadow-[0_0_15px_rgba(147,197,253,0.8)] transition-all ${viewHighlight} rounded-sm`}
+                                    >
+                                        <div className={boxClass}>
+                                            {dayNum}
+                                        </div>
+                                    </Link>
+                                );
+                            }
+                            return (
+                                <div key={dayNum} className="opacity-40 cursor-not-allowed">
+                                    <div className={boxClass}>
+                                        {dayNum}
+                                    </div>
+                                </div>
+                            );
                         })}
                     </div>
                     {stage !== 'CompletedReset' && <p className="text-slate-400 text-sm tracking-widest uppercase">Día {Math.min(activeDayNum, 7)} de 7</p>}
