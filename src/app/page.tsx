@@ -78,14 +78,43 @@ export default async function HomePage() {
 
       <section className="max-w-4xl mx-auto px-6 pb-32">
         <p className="text-center text-[10px] uppercase tracking-[0.4em] text-blue-200/80 mb-16">Incluye</p>
+      <section className="max-w-4xl mx-auto px-6 pb-32">
+        <p className="text-center text-[10px] uppercase tracking-[0.4em] text-blue-200/80 mb-16">Incluye</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { icon: '🌊', title: '7 prácticas guiadas', text: 'Respiración, movimiento, meditación y escaneo corporal. Todo lo que el sistema nervioso necesita.' },
-            { icon: '🧭', title: 'Un Compañero IA', text: 'Recibe respuestas personalizadas y continuadas basadas en tus propias reflexiones diarias.' },
-            { icon: '✦', title: 'Rituales de 5 minutos', text: 'Micro-hábitos sencillos para llevar la práctica a tu vida cotidiana sin esfuerzo.' },
+            { 
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
+                  <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                  <path d="M2 17c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                  <path d="M2 7c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                </svg>
+              ), 
+              title: '7 prácticas guiadas', 
+              text: 'Respiración, movimiento, meditación y escaneo corporal. Todo lo que el sistema nervioso necesita.' 
+            },
+            { 
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M16.2 7.8l-2 5.6-5.6 2 2-5.6 5.6-2z" />
+                </svg>
+              ), 
+              title: 'Un Compañero IA', 
+              text: 'Recibe respuestas personalizadas y continuadas basadas en tus propias reflexiones diarias.' 
+            },
+            { 
+              icon: (
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
+                  <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+              ), 
+              title: 'Rituales de 5 minutos', 
+              text: 'Micro-hábitos sencillos para llevar la práctica a tu vida cotidiana sin esfuerzo.' 
+            },
           ].map((item) => (
-            <div key={item.title} className="text-center px-6 py-10 bg-[#0b1a29]/30 border border-[#1a365d]/20 rounded-3xl">
-              <div className="text-3xl mb-4 opacity-70">{item.icon}</div>
+            <div key={item.title} className="text-center px-6 py-10 bg-[#0b1a29]/40 border border-[#1e3a5f]/50 rounded-3xl shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] hover:border-blue-500/30 transition-colors">
+              <div className="flex justify-center mb-6 opacity-90">{item.icon}</div>
               <h3 className="text-[#E6F0FF] font-medium text-lg mb-3">{item.title}</h3>
               <p className="text-slate-300 font-normal text-sm leading-relaxed">{item.text}</p>
             </div>
