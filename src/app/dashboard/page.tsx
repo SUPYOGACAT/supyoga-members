@@ -2,7 +2,6 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import ReflectionForm from './ReflectionForm'
-import DaySevenResult from './DaySevenResult'
 import NextDayButton from './NextDayButton'
 import VideoPlayer from './VideoPlayer'
 import CompanionIntro from './CompanionIntro'
@@ -10,7 +9,6 @@ import WaterDropsCounter from './WaterDropsCounter'
 import MicroInsight from './MicroInsight'
 import UserMenu from './UserMenu'
 import { blueResetJourney, dayZeroModule } from '@/data/journey'
-import { ResultEngine } from '@/lib/agents/result_engine'
 import Footer from '../components/Footer'
 
 const JOURNEY_STAGES = [
@@ -74,11 +72,6 @@ export default async function DashboardPage({
         ? { ...dayZeroModule, day: 0, microAction: { id: '0', description: '' } }
         : (blueResetJourney.find(m => m.day === viewDayNum) || blueResetJourney[0]);
     const currentDayReflection = dayReflections?.find(r => r.day === viewDayNum);
-
-    let resultSummary: import('@/lib/agents/result_engine').FinalProfile | string = "";
-    if (viewDayNum === 7 && isStageCompleted) {
-        resultSummary = await ResultEngine.generateSummary(user.id);
-    }
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#0a1826] to-[#0d2136] text-slate-200 p-6 md:p-12 selection:bg-blue-900/30 font-normal">
@@ -160,11 +153,8 @@ export default async function DashboardPage({
                         </div>
                     )}
 
-                    {viewDayNum === 7 && isStageCompleted ? (
-                        <DaySevenResult summary={resultSummary} />
-                    ) : (
-                        <div className="mt-16">
-                            {!isViewingPastDay ? (
+                    <div className="mt-16">
+                        {!isViewingPastDay ? (
                                 <div className="space-y-20 animate-fade-in max-w-3xl mx-auto">
                                     {/* Companion intro hidden for all days as per user requested pattern */}
                                     {false && <CompanionIntro day={viewDayNum} dayTheme={currentModule.theme} />}
@@ -199,16 +189,23 @@ export default async function DashboardPage({
                                         <MicroInsight sentiment={currentDayReflection?.sentiment_flag as "calm" | "neutral" | "low_emotion"} day={viewDayNum} />
                                     </div>
 
-                                    {/* Only show next day button if viewing the actual current completed day */}
                                     {viewDayNum === activeDayNum && isStageCompleted && activeDayNum < 7 && (
                                         <div className="mt-12">
                                             <NextDayButton />
                                         </div>
                                     )}
+
+                                    {/* Final transition button if Day 7 is completed */}
+                                    {viewDayNum === 7 && isStageCompleted && (
+                                        <div className="mt-12">
+                                            <Link href="/membership" className="inline-block px-10 py-4 bg-blue-600/20 hover:bg-blue-600/30 text-[#E6F0FF] border border-blue-400/30 rounded-full transition-all duration-700 font-normal shadow-[0_15px_40px_-10px_rgba(59,130,246,0.3)] hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.5)] hover:-translate-y-1 backdrop-blur-md uppercase tracking-[0.2em] text-xs">
+                                                Descubrir mi perfil final
+                                            </Link>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </div>
-                    )}
                 </section>
             </main>
             <Footer />

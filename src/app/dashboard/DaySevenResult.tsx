@@ -94,15 +94,7 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
                 </p>
             </div>
 
-            {/* Call To Action */}
-            <div className="text-center border-t border-[#1a365d]/50 pt-16">
-                <p className="text-slate-300 text-sm md:text-base mb-8 max-w-xl mx-auto">
-                    Si este perfil resuena contigo, hay un espacio donde podemos seguir profundizando en tu bienestar.
-                </p>
-                <Link href="/membership" className="inline-block px-10 py-4 bg-blue-600/20 hover:bg-blue-600/30 text-[#E6F0FF] border border-blue-400/30 rounded-full transition-all duration-700 font-normal shadow-[0_15px_40px_-10px_rgba(59,130,246,0.3)] hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.5)] hover:-translate-y-1 backdrop-blur-md w-full sm:w-auto uppercase tracking-[0.2em] text-xs">
-                    Ver siguientes pasos
-                </Link>
-            </div>
+
 
         </div>
     )

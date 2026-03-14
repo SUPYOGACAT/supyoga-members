@@ -3,8 +3,10 @@ import VideoPlayer from '../dashboard/VideoPlayer';
 import Link from 'next/link';
 import Footer from '../components/Footer';
 import UserMenu from '../dashboard/UserMenu';
+import DaySevenResult from '../dashboard/DaySevenResult';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import { ResultEngine } from '@/lib/agents/result_engine';
 
 export default async function MembershipLandingPage() {
     const supabase = await createClient();
@@ -13,6 +15,9 @@ export default async function MembershipLandingPage() {
     if (!user) {
         redirect('/login');
     }
+
+    // Fetch the calculated profile
+    const resultSummary = await ResultEngine.generateSummary(user.id);
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#0a1826] to-[#0d2136] text-slate-200 p-6 md:p-12 selection:bg-blue-900/30 font-normal">
@@ -27,7 +32,12 @@ export default async function MembershipLandingPage() {
                 <section className="bg-[#0b1a29]/40 backdrop-blur-xl p-8 md:p-16 rounded-[40px] border border-[#1a365d]/30 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] relative overflow-hidden transition-all duration-1000 max-w-4xl mx-auto">
                     <div className="absolute -top-64 -right-64 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
 
-                    <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
+                    {/* Final Result Profile Injection */}
+                    <div className="mb-20">
+                        <DaySevenResult summary={resultSummary} />
+                    </div>
+
+                    <div className="text-center max-w-3xl mx-auto mb-16 relative z-10 border-t border-[#1a365d]/50 pt-20">
                         <h2 className="text-4xl md:text-6xl font-normal text-[#E6F0FF] mb-10 tracking-tighter opacity-95 leading-tight">
                             ¿Y si esto no fuera solo un reto de 7 días?
                         </h2>
