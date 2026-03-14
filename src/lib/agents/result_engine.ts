@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server';
 
 export interface FinalProfile {
-    mode: 'calm' | 'energy' | 'connection';
+    mode: 'calm' | 'energy' | 'stress';
     title: string;
     description: string;
     scores: {
@@ -16,12 +16,17 @@ export const ResultEngine = {
     async generateSummary(userId: string): Promise<FinalProfile> {
         const supabase = await createClient();
 
-        const { data: reflections } = await supabase
+        // NOTE: DB column is `connection_score` (migration 00004 was not applied)
+        // The `connection_score` stores the Estrés value from the form
+        const { data: reflections, error } = await supabase
             .from('reflections')
             .select('day, energy_score, calm_score, connection_score')
             .eq('user_id', userId)
             .gte('day', 1)
             .lte('day', 7);
+
+        console.log('[ResultEngine] reflections fetched:', JSON.stringify(reflections));
+        console.log('[ResultEngine] fetch error:', error);
 
         // Fallback or empty state
         const defaultProfile: FinalProfile = {
@@ -33,6 +38,7 @@ export const ResultEngine = {
         };
 
         if (!reflections || reflections.length === 0) {
+            console.log('[ResultEngine] No reflections found, returning default profile');
             return defaultProfile;
         }
 
@@ -42,14 +48,17 @@ export const ResultEngine = {
         let daysCompleted = 0;
 
         reflections.forEach((r: { calm_score: number | null, energy_score: number | null, connection_score: number | null }) => {
-            if (r.calm_score || r.energy_score || r.connection_score) {
+            // Use null check (not falsy) so that a score of 0 doesn't skip the record
+            if (r.calm_score !== null || r.energy_score !== null || r.connection_score !== null) {
                 daysCompleted++;
-                totalCalm += r.calm_score || 0;
-                totalEnergy += r.energy_score || 0;
-                // Invert stress score: 6 - score
-                totalStressPositivo += r.connection_score ? (6 - r.connection_score) : 0;
+                totalCalm += r.calm_score ?? 0;
+                totalEnergy += r.energy_score ?? 0;
+                // Invert stress score: lower stress (1) → higher positivo (5), higher stress (5) → lower positivo (1)
+                totalStressPositivo += r.connection_score !== null ? (6 - r.connection_score) : 0;
             }
         });
+
+        console.log('[ResultEngine] totals:', { totalCalm, totalEnergy, totalStressPositivo, daysCompleted });
 
         const scores = [
             { mode: 'calm' as const, score: totalCalm, priority: 3 },
@@ -57,7 +66,7 @@ export const ResultEngine = {
             { mode: 'energy' as const, score: totalEnergy, priority: 1 }
         ];
 
-        // Sort by score descending, then by priority descending
+        // Sort by score descending, then by priority descending for tie-breaking
         scores.sort((a, b) => {
             if (b.score !== a.score) {
                 return b.score - a.score;
@@ -66,6 +75,7 @@ export const ResultEngine = {
         });
 
         const winner = scores[0].mode;
+        console.log('[ResultEngine] winner:', winner);
 
         let title = '';
         let description = '';
@@ -83,7 +93,7 @@ export const ResultEngine = {
         }
 
         return {
-            mode: winner as any, // keeping the type interface open for mode if needed, though 'stress' is not in the 'connection' type. Let's cast or update interface.
+            mode: winner,
             title,
             description,
             scores: {

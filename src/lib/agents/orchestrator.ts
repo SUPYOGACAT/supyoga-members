@@ -6,6 +6,7 @@ import { RegulationAgent } from './regulation';
 import { CompanionAgent } from './companion';
 import { PatternAgent } from './pattern';
 import { blueResetJourney, dayZeroModule } from '../../data/journey';
+import { createAdminClient } from '@/utils/supabase/admin';
 
 // The Orchestrator acts as the main routing switch that processes incoming events.
 export const Orchestrator = {
@@ -53,11 +54,12 @@ export const Orchestrator = {
             const sentiment = await RegulationAgent.analyzeSentiment(text || 'Sin texto');
 
             // Update reflection state with sentiment and scores in db
-            const supabase = await (await import('@/utils/supabase/server')).createClient();
+            // Use admin client (service role) to bypass RLS — runs server-side only
+            const adminSupabase = createAdminClient();
             let currentDay = parseInt(state.current_stage.replace(/\D/g, '')) || 1;
             if (state.current_stage === 'NotStarted') currentDay = 0;
 
-            await supabase.from('reflections').insert({
+            const { error: insertError } = await adminSupabase.from('reflections').insert({
                 user_id,
                 day: currentDay,
                 raw_text: text,
@@ -66,11 +68,16 @@ export const Orchestrator = {
                 calm_score,
                 connection_score: stress_score
             });
+            if (insertError) {
+                console.error('[ORCHESTRATOR] Failed to insert reflection:', insertError);
+            } else {
+                console.log(`[ORCHESTRATOR] Saved reflection for user ${user_id}, day ${currentDay}, energy=${energy_score}, calm=${calm_score}, stress=${stress_score}`);
+            }
 
             // Fetch previous day's reflection
             let previousContext = null;
             if (currentDay > 1) {
-                const { data: previousReflections } = await supabase
+                const { data: previousReflections } = await adminSupabase
                     .from('reflections')
                     .select('raw_text, sentiment_flag')
                     .eq('user_id', user_id)

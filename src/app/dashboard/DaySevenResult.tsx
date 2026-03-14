@@ -1,19 +1,9 @@
 'use client'
 
 import React from 'react';
-import Link from 'next/link';
+import type { FinalProfile } from '@/lib/agents/result_engine';
 
-export interface FinalProfile {
-    mode: 'calm' | 'energy' | 'stress';
-    title: string;
-    description: string;
-    scores: {
-        calm: number;
-        energy: number;
-        stress: number;
-    };
-    completionPercentage: number;
-}
+export type { FinalProfile };
 
 export default function DaySevenResult({ summary }: { summary: FinalProfile | string }) {
     // Fallback if the component receives the old string format before cache clears
@@ -36,9 +26,15 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
     return (
         <div className="w-full animate-fade-in relative z-10 py-8">
 
+            {/* 1. Header */}
+            <div className="text-center max-w-2xl mx-auto mb-12">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-slate-400 mb-4">Tu Reset Azul · {completionPercentage}% completado</p>
+                <h2 className="text-4xl md:text-5xl font-normal text-[#E6F0FF] tracking-tight opacity-95">
+                    Tu viaje en el Reset Azul
+                </h2>
+            </div>
 
-
-            {/* 2. Radar/Bars */}
+            {/* 2. Score Bars */}
             <div className="max-w-xl mx-auto mb-16 space-y-6 px-6">
                 <div className="space-y-2">
                     <div className="flex justify-between text-sm text-slate-300">
@@ -60,7 +56,7 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
                 </div>
                 <div className="space-y-2">
                     <div className="flex justify-between text-sm text-slate-300">
-                        <span>Nivel de Estrés</span>
+                        <span>Gestión del Estrés</span>
                         <span className="font-mono">{scores.stress}</span>
                     </div>
                     <div className="h-3 w-full bg-[#0a192f] rounded-full overflow-hidden">
@@ -93,8 +89,6 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
                     La pregunta ahora es:<br/>¿Qué pasaría si siguieras practicando?
                 </p>
             </div>
-
-
 
         </div>
     )
