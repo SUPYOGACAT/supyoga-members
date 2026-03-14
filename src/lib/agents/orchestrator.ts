@@ -48,7 +48,7 @@ export const Orchestrator = {
             const text = payload.text || "";
             const energy_score = payload.energy_score || null;
             const calm_score = payload.calm_score || null;
-            const connection_score = payload.connection_score || null;
+            const stress_score = payload.stress_score || null;
             
             const sentiment = await RegulationAgent.analyzeSentiment(text || 'Sin texto');
 
@@ -64,7 +64,7 @@ export const Orchestrator = {
                 sentiment_flag: sentiment,
                 energy_score,
                 calm_score,
-                connection_score
+                stress_score
             });
 
             // Fetch previous day's reflection

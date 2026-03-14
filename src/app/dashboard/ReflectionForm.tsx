@@ -33,7 +33,7 @@ function StarRating({ label, value, onChange }: StarRatingProps) {
 export default function ReflectionForm({ day, practice }: { day: number, practice?: string }) {
     const [energyScore, setEnergyScore] = useState(0)
     const [calmScore, setCalmScore] = useState(0)
-    const [connectionScore, setConnectionScore] = useState(0)
+    const [stressScore, setStressScore] = useState(0)
     const [reflection, setReflection] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isFinished, setIsFinished] = useState(false)
@@ -59,7 +59,7 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                         text: reflection,
                         energy_score: energyScore,
                         calm_score: calmScore,
-                        connection_score: connectionScore
+                        stress_score: stressScore
                     }
                 })
             })
@@ -100,7 +100,7 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
         )
     }
 
-    const isFormValid = energyScore > 0 && calmScore > 0 && connectionScore > 0;
+    const isFormValid = energyScore > 0 && calmScore > 0 && stressScore > 0;
 
     return (
         <form onSubmit={handleSubmit} className="mt-16 animate-fade-in space-y-16 max-w-2xl mx-auto">
@@ -110,8 +110,8 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                 
                 <div className="flex flex-col gap-10 bg-[#0d2136]/50 p-10 rounded-[30px] border border-[#1e3a5f]/40 shadow-inner backdrop-blur-sm">
                     <StarRating label="Energía" value={energyScore} onChange={setEnergyScore} />
+                    <StarRating label="Estrés" value={stressScore} onChange={setStressScore} />
                     <StarRating label="Calma Mental" value={calmScore} onChange={setCalmScore} />
-                    <StarRating label="Conexión" value={connectionScore} onChange={setConnectionScore} />
                 </div>
             </div>
 

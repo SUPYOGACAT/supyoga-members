@@ -7,7 +7,7 @@ export interface FinalProfile {
     scores: {
         calm: number;
         energy: number;
-        connection: number;
+        stress: number;
     };
     completionPercentage: number;
 }
@@ -18,7 +18,7 @@ export const ResultEngine = {
 
         const { data: reflections } = await supabase
             .from('reflections')
-            .select('day, energy_score, calm_score, connection_score')
+            .select('day, energy_score, calm_score, stress_score')
             .eq('user_id', userId)
             .gte('day', 1)
             .lte('day', 7);
@@ -28,7 +28,7 @@ export const ResultEngine = {
             mode: 'calm',
             title: 'Buscadora de calma',
             description: 'Tu cuerpo responde muy bien cuando bajas el ritmo. Las prácticas de respiración, meditación y presencia tienen un impacto directo en cómo te sientes. Tu camino pasa por darte más espacios de pausa y regulación en tu día a día.',
-            scores: { calm: 0, energy: 0, connection: 0 },
+            scores: { calm: 0, energy: 0, stress: 0 },
             completionPercentage: 0
         };
 
@@ -38,25 +38,28 @@ export const ResultEngine = {
 
         let totalCalm = 0;
         let totalEnergy = 0;
-        let totalConnection = 0;
+        let totalStress = 0;
         let daysCompleted = 0;
 
-        reflections.forEach((r: { calm_score: number | null, energy_score: number | null, connection_score: number | null }) => {
-            if (r.calm_score || r.energy_score || r.connection_score) {
+        reflections.forEach((r: { calm_score: number | null, energy_score: number | null, stress_score: number | null }) => {
+            if (r.calm_score || r.energy_score || r.stress_score) {
                 daysCompleted++;
                 totalCalm += r.calm_score || 0;
                 totalEnergy += r.energy_score || 0;
-                totalConnection += r.connection_score || 0;
+                totalStress += r.stress_score || 0;
             }
         });
 
         const sortedScores = [
-            { mode: 'connection' as const, score: totalConnection },
             { mode: 'calm' as const, score: totalCalm },
             { mode: 'energy' as const, score: totalEnergy }
         ].sort((a, b) => b.score - a.score); // Descending
 
-        const winner = sortedScores[0].mode;
+        // If it's a tie, they are "Connected with the Blue"
+        let winner: 'calm' | 'energy' | 'connection' = sortedScores[0].mode;
+        if (totalCalm === totalEnergy) {
+            winner = 'connection';
+        }
 
         let title = '';
         let description = '';
@@ -79,7 +82,7 @@ export const ResultEngine = {
             scores: {
                 calm: totalCalm,
                 energy: totalEnergy,
-                connection: totalConnection
+                stress: totalStress
             },
             completionPercentage: Math.round((daysCompleted / 7) * 100)
         };

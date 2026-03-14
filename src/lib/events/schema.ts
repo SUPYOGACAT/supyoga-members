@@ -26,7 +26,7 @@ export interface SystemEvent {
         text?: string;
         energy_score?: number;
         calm_score?: number;
-        connection_score?: number;
+        stress_score?: number;
         [key: string]: any;
     };
 }

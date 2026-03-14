@@ -10,7 +10,7 @@ export interface FinalProfile {
     scores: {
         calm: number;
         energy: number;
-        connection: number;
+        stress: number;
     };
     completionPercentage: number;
 }
@@ -30,7 +30,7 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
     const { title, description, scores, completionPercentage } = summary as FinalProfile;
 
     // Calculate max score for relative bar sizing
-    const maxScore = Math.max(scores.calm, scores.energy, scores.connection) || 1;
+    const maxScore = Math.max(scores.calm, scores.energy, scores.stress) || 1;
     const getWidth = (score: number) => `${Math.max((score / maxScore) * 100, 5)}%`;
 
     return (
@@ -71,11 +71,11 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
                 </div>
                 <div className="space-y-2">
                     <div className="flex justify-between text-sm text-slate-300">
-                        <span>Conexión Interna</span>
-                        <span className="font-mono">{scores.connection}</span>
+                        <span>Nivel de Estrés</span>
+                        <span className="font-mono">{scores.stress}</span>
                     </div>
                     <div className="h-3 w-full bg-[#0a192f] rounded-full overflow-hidden">
-                        <div className="h-full bg-cyan-400 rounded-full transition-all duration-1000" style={{ width: getWidth(scores.connection) }}></div>
+                        <div className="h-full bg-cyan-400 rounded-full transition-all duration-1000" style={{ width: getWidth(scores.stress) }}></div>
                     </div>
                 </div>
             </div>
