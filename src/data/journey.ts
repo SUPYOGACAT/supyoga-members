@@ -71,9 +71,9 @@ export const blueResetJourney: DailyModule[] = [
         day: 3,
         theme: 'Regular',
         title: 'El Ritmo del Mar',
-        description: 'Hoy usas el sonido del mar como guía para regular tu ritmo cardíaco. Con una respiración simétrica de 5-5 (inhala 5, exhala 5), o siguiendo el vaivén de las olas, entras en coherencia cardíaca: el estado en que corazón y sistema nervioso se sincronizan de forma natural.',
+        description: 'El sonido del mar tiene un efecto muy especial sobre nuestra mente.\n\nSu ritmo repetitivo ayuda al cerebro a entrar en estados de calma y concentración. Hoy vas a sincronizar tu respiración con ese ritmo.\n\nSi tienes el mar cerca, simplemente escúchalo. Si no, puedes usar el audio que acompaña esta práctica.\n\nNo hay que hacer nada perfecto. Solo observar la respiración y dejar que poco a poco encuentre su propio ritmo.',
         videoUrl: 'https://www.youtube.com/watch?v=WPYKuGXO4rA',
-        practice: 'Siéntate con los ojos cerrados o mirando el horizonte. Inhala 5 segundos, exhala 5 segundos. Deja que los pensamientos pasen como nubes. Mantén la práctica durante 5-10 minutos.',
+        practice: '',
         microAction: {
             id: 'action_003',
             description: 'Pon 3 minutos de sonido del mar en el móvil y simplemente escúchalo. Sin hacer nada más.'
