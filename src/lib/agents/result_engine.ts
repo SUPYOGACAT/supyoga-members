@@ -38,7 +38,7 @@ export const ResultEngine = {
 
         let totalCalm = 0;
         let totalEnergy = 0;
-        let totalStress = 0;
+        let totalStressPositivo = 0;
         let daysCompleted = 0;
 
         reflections.forEach((r: { calm_score: number | null, energy_score: number | null, stress_score: number | null }) => {
@@ -46,20 +46,26 @@ export const ResultEngine = {
                 daysCompleted++;
                 totalCalm += r.calm_score || 0;
                 totalEnergy += r.energy_score || 0;
-                totalStress += r.stress_score || 0;
+                // Invert stress score: 6 - score
+                totalStressPositivo += r.stress_score ? (6 - r.stress_score) : 0;
             }
         });
 
-        const sortedScores = [
-            { mode: 'calm' as const, score: totalCalm },
-            { mode: 'energy' as const, score: totalEnergy }
-        ].sort((a, b) => b.score - a.score); // Descending
+        const scores = [
+            { mode: 'calm' as const, score: totalCalm, priority: 3 },
+            { mode: 'stress' as const, score: totalStressPositivo, priority: 2 },
+            { mode: 'energy' as const, score: totalEnergy, priority: 1 }
+        ];
 
-        // If it's a tie, they are "Connected with the Blue"
-        let winner: 'calm' | 'energy' | 'connection' = sortedScores[0].mode;
-        if (totalCalm === totalEnergy) {
-            winner = 'connection';
-        }
+        // Sort by score descending, then by priority descending
+        scores.sort((a, b) => {
+            if (b.score !== a.score) {
+                return b.score - a.score;
+            }
+            return b.priority - a.priority;
+        });
+
+        const winner = scores[0].mode;
 
         let title = '';
         let description = '';
@@ -71,18 +77,19 @@ export const ResultEngine = {
             title = 'Exploradora del cuerpo';
             description = 'Tu bienestar mejora especialmente cuando incluyes movimiento consciente. Caminar, respirar y movilizar el cuerpo te ayuda a liberar tensión y recuperar tu energía. Tu camino pasa por seguir habitando el cuerpo con más presencia.';
         } else {
-            title = 'Conectada con el azul';
-            description = 'Tienes una sensibilidad especial hacia la conexión interna y los espacios que te ayudan a volver a ti. El mar, la respiración y la presencia tienen un efecto profundo en tu estado interno. Tu bienestar crece cuando mantienes vivos tus rituales azules.';
+            // winner === 'stress'
+            title = 'Navegante de la calma';
+            description = 'Tu sistema nervioso responde especialmente bien cuando liberas tensión y permites que el cuerpo vuelva a un estado de seguridad. Reducir el estrés y encontrar momentos de calma tiene un impacto profundo en tu bienestar. Tu camino pasa por mantener pequeños rituales que te ayuden a regular tu día a día.';
         }
 
         return {
-            mode: winner,
+            mode: winner as any, // keeping the type interface open for mode if needed, though 'stress' is not in the 'connection' type. Let's cast or update interface.
             title,
             description,
             scores: {
                 calm: totalCalm,
                 energy: totalEnergy,
-                stress: totalStress
+                stress: totalStressPositivo
             },
             completionPercentage: Math.round((daysCompleted / 7) * 100)
         };
