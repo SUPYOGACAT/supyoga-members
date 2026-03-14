@@ -60,7 +60,7 @@ export default async function HomePage() {
 
         {/* Video Preview */}
         <div className="mt-24 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050c14] z-10 pointer-events-none rounded-[32px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a1826] z-10 pointer-events-none rounded-[32px]"></div>
           <div className="bg-[#0b1a29]/40 backdrop-blur-xl rounded-[32px] border border-[#1a365d]/30 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] relative">
             {/* Video embed */}
             <div className="aspect-video w-full">
