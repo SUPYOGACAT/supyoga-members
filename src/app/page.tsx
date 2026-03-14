@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { welcomeModule, dayZeroModule } from '@/data/journey'
+import { welcomeModule } from '@/data/journey'
 import Footer from './components/Footer'
 
 export default async function HomePage() {
@@ -59,42 +59,18 @@ export default async function HomePage() {
         </div>
 
         {/* Video Preview */}
-        <div className="mt-24 relative max-w-5xl mx-auto">
+        <div className="mt-24 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a1826] z-10 pointer-events-none rounded-[32px]"></div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-20">
-            {/* Welcome Video */}
-            <div className="bg-[#0b1a29]/40 backdrop-blur-xl rounded-[32px] border border-[#1a365d]/30 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] hover:border-blue-500/30 transition-colors">
-              <div className="px-6 py-5 border-b border-[#1a365d]/30 text-left bg-[#081421]/60">
-                <p className="text-blue-400 text-[10px] font-medium uppercase tracking-[0.2em] mb-1">Introducción</p>
-                <h3 className="text-[#E6F0FF] text-lg font-normal">{welcomeModule.title}</h3>
-              </div>
-              <div className="aspect-video w-full">
-                <iframe
-                  src={`https://www.youtube.com/embed/${getYouTubeId(welcomeModule.videoUrl)}?modestbranding=1&rel=0&color=white&iv_load_policy=3`}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Reset Azul - Bienvenida"
-                />
-              </div>
-            </div>
-
-            {/* Day 0 Video */}
-            <div className="bg-[#0b1a29]/40 backdrop-blur-xl rounded-[32px] border border-[#1a365d]/30 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] hover:border-blue-500/30 transition-colors">
-              <div className="px-6 py-5 border-b border-[#1a365d]/30 text-left bg-[#081421]/60">
-                <p className="text-blue-400 text-[10px] font-medium uppercase tracking-[0.2em] mb-1">Día 0</p>
-                <h3 className="text-[#E6F0FF] text-lg font-normal">{dayZeroModule.title}</h3>
-              </div>
-              <div className="aspect-video w-full">
-                <iframe
-                  src={`https://www.youtube.com/embed/${getYouTubeId(dayZeroModule.videoUrl)}?modestbranding=1&rel=0&color=white&iv_load_policy=3`}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Reset Azul - Día 0"
-                />
-              </div>
+          <div className="bg-[#0b1a29]/40 backdrop-blur-xl rounded-[32px] border border-[#1a365d]/30 overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] relative">
+            {/* Video embed */}
+            <div className="aspect-video w-full">
+              <iframe
+                src={`https://www.youtube.com/embed/${getYouTubeId(welcomeModule.videoUrl)}?modestbranding=1&rel=0&color=white&iv_load_policy=3`}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Reset Azul - Bienvenida"
+              />
             </div>
           </div>
         </div>
