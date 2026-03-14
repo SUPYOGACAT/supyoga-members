@@ -59,9 +59,9 @@ export const blueResetJourney: DailyModule[] = [
         day: 2,
         theme: 'Restaurar',
         title: 'Caminata Sensorial',
-        description: 'Hoy restauras tu mente a través de los sentidos. Una caminata consciente activa la percepción del cuerpo desde los pies hasta los hombros, llevandte de la mente al cuerpo. Si puedes, camina descalza sobre arena o tierra. Si no, cualquier entorno sirve.',
+        description: 'Hoy vamos a despertar el cuerpo a través del movimiento.\n\nLa práctica de hoy es una caminata sensorial. No se trata de caminar rápido ni de hacer ejercicio. Se trata de caminar prestando atención.\n\n• A la textura del suelo.\n• Al movimiento del cuerpo.\n• A la respiración.\n\nPuedes hacerlo en la playa, en la naturaleza o incluso en la ciudad. Lo importante no es el lugar. Es la presencia con la que caminas.\n\nEmpieza la caminata y observa cómo responde tu cuerpo.',
         videoUrl: 'https://www.youtube.com/watch?v=ZUEQyDO5Pbg',
-        practice: 'Sal a caminar lentamente 10-15 minutos. Presta atención completa a la textura bajo tus pies, el balanceo de tu cadera, el movimiento de tus brazos. Sin auriculares. Solo presencia.',
+        practice: '',
         microAction: {
             id: 'action_002',
             description: 'Frota despacio las manos y pásalas por las mejillas, las orejas y la cabeza. Tómate 60 segundos de autocontacto consciente.'
