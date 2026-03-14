@@ -64,7 +64,7 @@ export const Orchestrator = {
                 sentiment_flag: sentiment,
                 energy_score,
                 calm_score,
-                stress_score
+                connection_score: stress_score
             });
 
             // Fetch previous day's reflection

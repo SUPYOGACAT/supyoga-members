@@ -18,7 +18,7 @@ export const ResultEngine = {
 
         const { data: reflections } = await supabase
             .from('reflections')
-            .select('day, energy_score, calm_score, stress_score')
+            .select('day, energy_score, calm_score, connection_score')
             .eq('user_id', userId)
             .gte('day', 1)
             .lte('day', 7);
@@ -41,13 +41,13 @@ export const ResultEngine = {
         let totalStressPositivo = 0;
         let daysCompleted = 0;
 
-        reflections.forEach((r: { calm_score: number | null, energy_score: number | null, stress_score: number | null }) => {
-            if (r.calm_score || r.energy_score || r.stress_score) {
+        reflections.forEach((r: { calm_score: number | null, energy_score: number | null, connection_score: number | null }) => {
+            if (r.calm_score || r.energy_score || r.connection_score) {
                 daysCompleted++;
                 totalCalm += r.calm_score || 0;
                 totalEnergy += r.energy_score || 0;
                 // Invert stress score: 6 - score
-                totalStressPositivo += r.stress_score ? (6 - r.stress_score) : 0;
+                totalStressPositivo += r.connection_score ? (6 - r.connection_score) : 0;
             }
         });
 
