@@ -95,9 +95,9 @@ export const blueResetJourney: DailyModule[] = [
         day: 5,
         theme: 'Abrir el Corazón',
         title: 'La Mano en el Pecho',
-        description: 'Hoy practicamos la gratitud como herramienta de regulación del sistema nervioso. Una mano sobre el corazón, una respiración 4-6, y un gesto de agradecimiento hacia algo que te haya sostenido esta semana. Simple, breve, y profundamente transformador.',
+        description: 'Hoy vamos a conectar con una emoción que tiene un efecto profundo sobre nuestro bienestar: la gratitud.\n\nCuando sentimos gratitud, el cuerpo cambia. La respiración se suaviza. El sistema nervioso se regula. La mente se calma.\n\nEn esta práctica vas a usar la respiración y la atención en el corazón para despertar esa sensación. No necesitas buscar nada especial. Solo recordar algo que te haya sostenido esta semana.',
         videoUrl: 'https://www.youtube.com/watch?v=fB2ZwJ4Y5Ec',
-        practice: 'Coloca tu mano derecha sobre el pecho. Inhala 4 segundos, exhala 6. Piensa en una sola cosa que te haya sostenido esta semana. Siéntela. Sonríe internamente. Inhala profundo y exhala soltando todo el aire.',
+        practice: '',
         microAction: {
             id: 'action_005',
             description: 'Escribe una sola frase de gratitud en tu libreta o en el móvil. Sin elaborar. Lo primero que salga.'
@@ -107,9 +107,9 @@ export const blueResetJourney: DailyModule[] = [
         day: 6,
         theme: 'Coherencia',
         title: 'El Mar Dentro de Ti',
-        description: 'Hoy llegamos a una de las meditaciones más potentes del reset: "El mar dentro de ti". Imaginas tu respiración moviéndose como una ola, y al final despiertas la sensación física de tu propio corazón desde dentro, a través de la interocepción. Una práctica para llevar siempre contigo.',
+        description: 'Hoy vamos a hacer una meditación muy especial. Imaginaremos la respiración moviéndose como una ola dentro del cuerpo.\n\nA través de esta práctica vas a despertar la interocepción, la capacidad de percibir lo que sucede dentro de ti. Y poco a poco podrás sentir el ritmo de tu propio corazón.\n\nEs una práctica muy potente que podrás usar siempre que necesites volver a la calma.',
         videoUrl: 'https://www.youtube.com/watch?v=z7NdLy39YkI',
-        practice: 'Siéntate en silencio y sigue la meditación guiada. Imagina que tu inhalación es una ola que llega a la orilla y tu exhalación es el mar retirándose. Al final, lleva la atención al latido de tu corazón, sin buscarlo con prisa, solo esperando sentirlo.',
+        practice: '',
         microAction: {
             id: 'action_006',
             description: 'En cualquier momento de tensión hoy, cierra los ojos 30 segundos e imagina una ola entrando y saliendo con tu respiración.'
@@ -119,9 +119,9 @@ export const blueResetJourney: DailyModule[] = [
         day: 7,
         theme: 'Integrar y Cerrar',
         title: 'El Viaje Continúa',
-        description: 'Has llegado al último día del Reset Azul. Hoy integras todo lo que has vivido. Vuelves a la respiración del Día 1, rescribes cómo te sientes ahora frente a cómo empezaste, y eliges un micro-hábito de 5 minutos para llevar contigo. El reset no termina hoy: comienza a vivir en ti.',
+        description: 'Hemos llegado al último día del Reset Azul. Hoy es un día para integrar lo que has vivido durante esta semana.\n\nVas a repetir algunas de las respiraciones que has aprendido y después volverás a tu libreta para observar qué ha cambiado.\n\nNo se trata de que todo haya mejorado. Se trata de observar tu experiencia después de estos siete días. Al final de la práctica elegirás un pequeño micro-hábito que puedas llevar contigo en tu día a día.\n\nPorque los cambios reales no vienen de hacer mucho. Vienen de pequeños gestos repetidos en el tiempo.',
         videoUrl: 'https://www.youtube.com/watch?v=7S7yUnjNcD0',
-        practice: 'Haz la respiración 4-2-6 durante 5 minutos. Luego escribe: ¿Cómo estaba? ¿Cómo estoy ahora? ¿Qué he descubierto de mí? Por último, elige un micro-hábito de esta semana para seguir practicando.',
+        practice: '',
         microAction: {
             id: 'action_007',
             description: 'Comprométete con un único micro-hábito de los que has practicado esta semana. Escríbelo y ponlo en algún lugar visible.'
