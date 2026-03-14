@@ -48,13 +48,17 @@ export async function resetUserProgress(userId: string) {
         await supabase.from('events').delete().eq('user_id', userId)
         
         // Reset the state to NotStarted
-        await supabase.from('user_states').update({
+        const { error } = await supabase.from('user_states').update({
             current_stage: 'NotStarted',
             water_drops: 0,
             current_streak: 0,
-            active_day: 0,
-            current_stage_completed: false
+            completed_days: []
         }).eq('user_id', userId)
+
+        if (error) {
+            console.error('[ADMIN] Update user_states error:', error)
+            throw error;
+        }
 
     } catch (error) {
         console.error('[ADMIN] Error resetting user:', error)
