@@ -47,7 +47,7 @@ export const blueResetJourney: DailyModule[] = [
         day: 1,
         theme: 'Calmar',
         title: 'El Arte de Parar',
-        description: 'Hoy comienzas el reset con la práctica más importante: parar. A través de la respiración 4-2-6 y el sonido del agua, le dices al sistema nervioso que puede soltar la guardia. La calma no es pasividad, es la base desde donde todo lo demás es posible.',
+        description: 'Hoy empezamos con algo esencial.\n\nTu sistema nervioso está constantemente recibiendo información del entorno: sonidos, luz, personas, situaciones… Y muchas veces acumula más tensión de la que somos conscientes.\n\nEn la práctica de hoy vamos a usar la respiración para enviar una señal de calma al cuerpo. Es una práctica sencilla que puedes hacer frente al mar o desde casa observando un horizonte amplio. Solo necesitas unos minutos para empezar a crear más espacio dentro de ti.\n\nCuando estés listo, empieza la práctica.',
         videoUrl: 'https://www.youtube.com/watch?v=jNn3j7h_1NE',
         practice: 'Respiración 4-2-6: inhala 4 segundos, retén 2, exhala 6. Repite durante 5 minutos con los ojos cerrados o mirando el horizonte.',
         microAction: {
