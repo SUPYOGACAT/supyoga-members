@@ -30,3 +30,34 @@ export async function adminLogout() {
     cookieStore.delete('admin_session')
     redirect('/admin/login')
 }
+
+export async function resetUserProgress(userId: string) {
+    const cookieStore = await cookies()
+    const session = cookieStore.get('admin_session')
+    if (!session || session.value !== 'authenticated') {
+        throw new Error('Unauthorized')
+    }
+
+    const { createAdminClient } = await import('@/utils/supabase/admin')
+    const supabase = createAdminClient()
+
+    try {
+        // Delete all user progress tracking tables
+        await supabase.from('reflections').delete().eq('user_id', userId)
+        await supabase.from('companion_interactions').delete().eq('user_id', userId)
+        await supabase.from('events').delete().eq('user_id', userId)
+        
+        // Reset the state to NotStarted
+        await supabase.from('user_states').update({
+            current_stage: 'NotStarted',
+            water_drops: 0,
+            current_streak: 0,
+            active_day: 0,
+            current_stage_completed: false
+        }).eq('user_id', userId)
+
+    } catch (error) {
+        console.error('[ADMIN] Error resetting user:', error)
+        throw new Error('Failed to reset user')
+    }
+}

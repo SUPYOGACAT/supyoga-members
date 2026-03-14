@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { resetUserProgress } from './actions'
 
 interface Member {
     id: string
@@ -72,6 +74,23 @@ function downloadCSV(members: Member[]) {
 export default function AdminTableClient({ members }: { members: Member[] }) {
     const [filter, setFilter] = useState<'all' | 'active' | 'completed' | 'notstarted'>('all')
     const [search, setSearch] = useState('')
+    const [isResetting, setIsResetting] = useState<string | null>(null)
+    const router = useRouter()
+
+    const handleReset = async (userId: string, userName: string | null) => {
+        if (!confirm(`¿Estás seguro de querer resetear el progreso de ${userName || 'este usuario'}? Perderá todas sus reflexiones y volverá al Día 0. Esta acción no se puede deshacer.`)) return
+        
+        setIsResetting(userId)
+        try {
+            await resetUserProgress(userId)
+            router.refresh()
+        } catch (error) {
+            alert('Ha ocurrido un error al intentar resetear al usuario.')
+            console.error(error)
+        } finally {
+            setIsResetting(null)
+        }
+    }
 
     const filteredMembers = members.filter(m => {
         const matchesSearch = !search ||
@@ -153,6 +172,7 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                                 <th className="text-left px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-slate-500 font-medium">Estado</th>
                                 <th className="text-left px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-slate-500 font-medium">💧 Gotas</th>
                                 <th className="text-left px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-slate-500 font-medium">Última actividad</th>
+                                <th className="text-left px-6 py-4 text-[10px] uppercase tracking-[0.25em] text-slate-500 font-medium">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -196,6 +216,15 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                                             <td className={`px-6 py-4 font-normal text-xs ${status.color}`}>{status.label}</td>
                                             <td className="px-6 py-4 text-blue-300 font-normal tabular-nums">{member.water_drops}</td>
                                             <td className="px-6 py-4 text-slate-300 font-normal tabular-nums text-xs">{formatDate(member.last_interaction)}</td>
+                                            <td className="px-6 py-4 text-right">
+                                                <button
+                                                    onClick={() => handleReset(member.id, member.name)}
+                                                    disabled={isResetting === member.id}
+                                                    className="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-lg text-[10px] uppercase tracking-widest transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                                                >
+                                                    {isResetting === member.id ? 'Reseteando...' : 'Reset'}
+                                                </button>
+                                            </td>
                                         </tr>
                                     )
                                 })
