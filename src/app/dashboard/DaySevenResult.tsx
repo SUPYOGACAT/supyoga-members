@@ -42,7 +42,7 @@ export default function DaySevenResult({ summary }: { summary: string }) {
                 <div className="space-y-6">
                     <h3 className="text-3xl font-normal text-[#E6F0FF] tracking-wide">Vivir en Azul</h3>
                     <p className="text-slate-200 font-normal text-lg md:text-xl leading-relaxed">
-                        Blue Reset es solo el comienzo.<br />
+                        Reset Azul es solo el comienzo.<br />
                         La verdadera transformación ocurre cuando estos pequeños rituales se vuelven parte de la vida diaria.
                     </p>
                     <p className="text-slate-300 text-sm md:text-base font-normal px-8">

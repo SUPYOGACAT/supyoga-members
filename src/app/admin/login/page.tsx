@@ -13,7 +13,7 @@ export default async function AdminLoginPage({
             <div className="w-full max-w-sm">
                 {/* Logo */}
                 <div className="text-center mb-12">
-                    <span className="text-[11px] uppercase tracking-[0.4em] text-blue-200/40">Blue Reset</span>
+                    <span className="text-[11px] uppercase tracking-[0.4em] text-blue-200/40">Reset Azul</span>
                     <h1 className="text-2xl font-normal text-[#E6F0FF] mt-3 tracking-wide">Panel de administración</h1>
                 </div>
 

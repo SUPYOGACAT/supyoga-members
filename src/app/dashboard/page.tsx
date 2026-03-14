@@ -83,7 +83,7 @@ export default async function DashboardPage({
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#0a1826] to-[#0d2136] text-slate-200 p-6 md:p-12 selection:bg-blue-900/30 font-normal">
             <header className="flex justify-between items-center mb-16 max-w-4xl mx-auto opacity-70 hover:opacity-100 transition-opacity duration-700">
-                <Link href="/dashboard" className="text-sm font-normal text-blue-200 tracking-[0.3em] mix-blend-screen">BLUE RESET</Link>
+                <Link href="/dashboard" className="text-sm font-normal text-blue-200 tracking-[0.3em] mix-blend-screen">RESET AZUL</Link>
                 <div className="flex items-center gap-6 z-50">
                     <WaterDropsCounter total={drops} justEarned={isStageCompleted && viewDayNum === activeDayNum ? 1 : 0} />
                     <div className="w-[1px] h-4 bg-blue-500/20"></div>

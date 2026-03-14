@@ -29,7 +29,7 @@ export interface DayZeroModule {
 
 export const welcomeModule: WelcomeModule = {
     videoUrl: 'https://www.youtube.com/watch?v=Ja21lyFZUhQ',
-    title: 'Blue Reset',
+    title: 'Reset Azul',
     subtitle: 'Tu viaje de 7 días hacia la calma interior',
     description: 'Un reset completo del sistema nervioso a través de prácticas inspiradas en el entorno aquático. Calma, restaura y regula desde dentro.'
 };

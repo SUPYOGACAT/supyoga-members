@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/server';
 const openai = new OpenAI();
 
 const RESULT_ENGINE_PROMPT = `
-Eres el Motor de Resultados de Blue Reset.
+Eres el Motor de Resultados de Reset Azul.
 Misión: Genera un "Lightweight Pattern Insight" como resumen final del viaje de 7 días del usuario.
 
 REGLAS ESTRICTAS DE TONO:

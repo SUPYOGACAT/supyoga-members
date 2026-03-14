@@ -28,7 +28,7 @@ export const PatternAgent = {
         const compiledData = reflections.map(r => `Día ${r.day} [Sentimiento: ${r.sentiment_flag}]: ${r.raw_text}`).join('\n');
 
         const PATTERN_SYSTEM_PROMPT = `
-Eres el Observador de Patrones de Blue Reset.
+Eres el Observador de Patrones de Reset Azul.
 Misión: Genera un "Lightweight Pattern Insight" basado en las reflexiones recientes del usuario.
 
 REGLAS ESTRICTAS DE TONO:

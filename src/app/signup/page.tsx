@@ -14,7 +14,7 @@ export default async function SignupPage({
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#0a1826] text-slate-200 px-6 py-12">
             <div className="max-w-md w-full p-8 md:p-10 rounded-3xl bg-[#0b1a29]/80 backdrop-blur-sm shadow-2xl border border-[#1a365d] mb-auto mt-auto">
                 <div className="text-center mb-10">
-                    <h1 className="text-3xl md:text-4xl font-normal text-[#E6F0FF] tracking-wide mb-3">BLUE RESET</h1>
+                    <h1 className="text-3xl md:text-4xl font-normal text-[#E6F0FF] tracking-wide mb-3">RESET AZUL</h1>
                     <p className="text-slate-300 font-normal text-sm tracking-wide">Comienza tu viaje</p>
                 </div>
 

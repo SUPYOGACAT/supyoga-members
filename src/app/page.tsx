@@ -16,7 +16,7 @@ export default async function HomePage() {
     <div className="min-h-screen bg-gradient-to-b from-[#0a1826] via-[#0d2136] to-[#0a1826] text-slate-200 selection:bg-blue-900/30 font-normal overflow-hidden">
       {/* Navigation */}
       <header className="flex justify-between items-center p-6 md:p-10 max-w-6xl mx-auto">
-        <span className="text-sm font-normal text-blue-200/60 tracking-[0.3em] uppercase">Blue Reset</span>
+        <span className="text-sm font-normal text-blue-200/60 tracking-[0.3em] uppercase">Reset Azul</span>
         <Link
           href="/login"
           className="text-[11px] uppercase tracking-[0.25em] text-blue-200/80 hover:text-blue-200 transition-colors"
@@ -69,7 +69,7 @@ export default async function HomePage() {
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title="Blue Reset - Bienvenida"
+                title="Reset Azul - Bienvenida"
               />
             </div>
           </div>

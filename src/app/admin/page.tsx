@@ -116,7 +116,7 @@ export default async function AdminPage() {
                             ← Volver al Dashboard
                         </Link>
                         <h1 className="text-3xl font-normal text-[#E6F0FF] mt-3 tracking-wide">Panel de administración</h1>
-                        <p className="text-slate-300 font-normal text-sm mt-1">Blue Reset · Miembros</p>
+                        <p className="text-slate-300 font-normal text-sm mt-1">Reset Azul · Miembros</p>
                     </div>
                     <form action={adminLogout}>
                         <button type="submit" className="text-[10px] uppercase tracking-[0.25em] text-slate-500 hover:text-red-400 transition-colors">
