@@ -76,9 +76,8 @@ export default async function HomePage() {
         </div>
       </main>
 
-      {/* What you'll get */}
       <section className="max-w-4xl mx-auto px-6 pb-32">
-        <p className="text-center text-[10px] uppercase tracking-[0.4em] text-blue-400/30 mb-16">Incluye</p>
+        <p className="text-center text-[10px] uppercase tracking-[0.4em] text-blue-200/80 mb-16">Incluye</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { icon: '🌊', title: '7 prácticas guiadas', text: 'Respiración, movimiento, meditación y escaneo corporal. Todo lo que el sistema nervioso necesita.' },
@@ -87,7 +86,7 @@ export default async function HomePage() {
           ].map((item) => (
             <div key={item.title} className="text-center px-6 py-10 bg-[#0b1a29]/30 border border-[#1a365d]/20 rounded-3xl">
               <div className="text-3xl mb-4 opacity-70">{item.icon}</div>
-              <h3 className="text-[#E6F0FF] font-normal text-lg mb-3">{item.title}</h3>
+              <h3 className="text-[#E6F0FF] font-medium text-lg mb-3">{item.title}</h3>
               <p className="text-slate-300 font-normal text-sm leading-relaxed">{item.text}</p>
             </div>
           ))}
@@ -102,7 +101,7 @@ export default async function HomePage() {
         >
           Empezar ahora →
         </Link>
-        <p className="text-slate-300/40 text-xs tracking-widest">Blue Reset by SupYoga Barcelona</p>
+        <p className="text-slate-300/40 text-xs tracking-widest">Reset by SUPYOGA.CAT</p>
       </footer>
     </div>
   )
