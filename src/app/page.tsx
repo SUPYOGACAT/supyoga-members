@@ -78,8 +78,6 @@ export default async function HomePage() {
 
       <section className="max-w-4xl mx-auto px-6 pb-32">
         <p className="text-center text-[10px] uppercase tracking-[0.4em] text-blue-200/80 mb-16">Incluye</p>
-      <section className="max-w-4xl mx-auto px-6 pb-32">
-        <p className="text-center text-[10px] uppercase tracking-[0.4em] text-blue-200/80 mb-16">Incluye</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { 
