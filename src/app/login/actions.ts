@@ -34,11 +34,15 @@ export async function signup(formData: FormData) {
         email: formData.get('email') as string,
         password: formData.get('password') as string,
     }
+    const fullName = formData.get('name') as string
 
     const { error } = await supabase.auth.signUp({
         ...data,
         options: {
             emailRedirectTo: `${protocol}://${host}/auth/callback`,
+            data: {
+                full_name: fullName,
+            }
         }
     })
 

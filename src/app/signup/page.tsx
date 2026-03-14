@@ -20,6 +20,16 @@ export default async function SignupPage({
 
                 <form className="space-y-6">
                     <div>
+                        <label className="block text-[11px] uppercase tracking-[0.25em] text-slate-300 mb-3" htmlFor="name">Nombre completo</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            required
+                            className="w-full bg-[#0d2136]/50 border border-[#1e3a5f]/50 rounded-xl px-5 py-4 text-[#E6F0FF] font-normal text-sm focus:outline-none focus:border-blue-400/50 focus:bg-[#0d2136] transition-colors placeholder:text-slate-600"
+                        />
+                    </div>
+                    <div>
                         <label className="block text-[11px] uppercase tracking-[0.25em] text-slate-300 mb-3" htmlFor="email">Correo electrónico</label>
                         <input
                             id="email"
