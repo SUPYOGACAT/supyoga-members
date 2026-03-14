@@ -36,18 +36,7 @@ export default function DaySevenResult({ summary }: { summary: FinalProfile | st
     return (
         <div className="w-full animate-fade-in relative z-10 py-8">
 
-            {/* 1. Journey Completion Header */}
-            <div className="text-center mb-16 space-y-6">
-                <span className="text-blue-400 font-mono text-sm tracking-widest uppercase">Has completado el {completionPercentage}% del reto</span>
-                <h2 className="text-5xl md:text-6xl font-normal text-[#E6F0FF] tracking-tighter opacity-95 drop-shadow-sm">
-                    Tu viaje en el Reset Azul
-                </h2>
-                <div className="flex gap-1 justify-center mt-4">
-                     {[...Array(7)].map((_, i) => (
-                        <div key={i} className={`h-1.5 w-12 rounded-full ${i < Math.round((completionPercentage/100)*7) ? 'bg-blue-400' : 'bg-[#19325a]'}`}></div>
-                    ))}
-                </div>
-            </div>
+
 
             {/* 2. Radar/Bars */}
             <div className="max-w-xl mx-auto mb-16 space-y-6 px-6">
