@@ -37,9 +37,9 @@ export const welcomeModule: WelcomeModule = {
 export const dayZeroModule: DayZeroModule = {
     videoUrl: 'https://www.youtube.com/watch?v=EsVnVF6PZuo',
     theme: 'Test Inicial + Intención',
-    title: 'Antes de Empezar',
-    description: 'Hoy es el punto de partida. Antes de lanzarte al agua, toma un momento para saber desde dónde partes. Registra cómo te sientes ahora y define tu intención para estos 7 días. La respiración 4-2-6 será tu ancla durante todo el recorrido.',
-    practice: 'Respira 4 segundos inhalando, retén 2, exhala 6. Repite 3 veces y anota cómo se siente.'
+    title: 'Antes de empezar vamos a hacer algo importante',
+    description: 'Necesitamos saber cómo estás hoy. Por eso en este día 0 vas a hacer una pequeña evaluación inicial para observar tres aspectos de tu bienestar:\n\n• tu nivel de energía\n• tu calidad de sueño\n• tu nivel de estrés',
+    practice: 'No hay respuestas correctas. Solo tu percepción en este momento. Este punto será tu referencia para observar qué cambia durante los próximos 7 días. Toma tu libreta y empieza con el Día 0.'
 };
 
 export const blueResetJourney: DailyModule[] = [
