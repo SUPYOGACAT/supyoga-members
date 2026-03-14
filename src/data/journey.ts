@@ -83,9 +83,9 @@ export const blueResetJourney: DailyModule[] = [
         day: 4,
         theme: 'Liberar',
         title: 'Sacudir y Soltar',
-        description: 'La tensión acumulada suele vivir en el cuerpo, no en la mente. Hoy la liberamos con movimiento: sacudidas desde las manos, círculos de hombros, aperturas de brazos y un reset físico completo. El cuerpo sabe cómo soltar cuando le das permiso.',
+        description: 'A lo largo del día el cuerpo acumula tensión sin que nos demos cuenta.\n\n• En los hombros.\n• En la mandíbula.\n• En el cuello.\n\nHoy vamos a hacer una práctica muy sencilla para liberar esa tensión y ayudar al sistema nervioso a volver a un estado de seguridad. Es una práctica rápida que puedes usar en cualquier momento del día cuando necesites resetear el cuerpo.\n\nBusca un espacio donde puedas moverte con comodidad y empieza.',
         videoUrl: 'https://www.youtube.com/watch?v=hWouHnlqk8g',
-        practice: 'Ponte de pie. Durante 5 minutos: sacude manos y brazos con energía, haz círculos de hombros, abre y cierra los brazos como olas. Termina frotando las manos y pasándolas por tu cuerpo desde la cabeza hasta los pies.',
+        practice: '',
         microAction: {
             id: 'action_004',
             description: 'Cada vez que sientas tensión en los hombros hoy, haz 3 círculos hacia atrás y un suspiro audible.'
