@@ -156,10 +156,10 @@ export default async function DashboardPage({
                         <div className="mt-16">
                             {!isViewingPastDay ? (
                                 <div className="space-y-20 animate-fade-in max-w-3xl mx-auto">
-                                    {viewDayNum !== 0 && <CompanionIntro day={viewDayNum} dayTheme={currentModule.theme} />}
+                                    {viewDayNum !== 0 && viewDayNum !== 1 && <CompanionIntro day={viewDayNum} dayTheme={currentModule.theme} />}
 
                                     <div className="text-center space-y-10">
-                                        {viewDayNum !== 0 && (
+                                        {viewDayNum !== 0 && currentModule.practice && (
                                             <>
                                                 <p className="text-slate-300 font-normal italic text-sm">Tómate un momento antes de continuar.</p>
                                                 <div className="bg-[#0d2136]/60 rounded-3xl p-10 md:p-14 border border-[#1e3a5f]/40 backdrop-blur-md shadow-inner">

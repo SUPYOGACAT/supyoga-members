@@ -49,7 +49,7 @@ export const blueResetJourney: DailyModule[] = [
         title: 'El Arte de Parar',
         description: 'Hoy empezamos con algo esencial.\n\nTu sistema nervioso está constantemente recibiendo información del entorno: sonidos, luz, personas, situaciones… Y muchas veces acumula más tensión de la que somos conscientes.\n\nEn la práctica de hoy vamos a usar la respiración para enviar una señal de calma al cuerpo. Es una práctica sencilla que puedes hacer frente al mar o desde casa observando un horizonte amplio. Solo necesitas unos minutos para empezar a crear más espacio dentro de ti.\n\nCuando estés listo, empieza la práctica.',
         videoUrl: 'https://www.youtube.com/watch?v=jNn3j7h_1NE',
-        practice: 'Respiración 4-2-6: inhala 4 segundos, retén 2, exhala 6. Repite durante 5 minutos con los ojos cerrados o mirando el horizonte.',
+        practice: '',
         microAction: {
             id: 'action_001',
             description: 'Antes de tu próxima comida, haz 3 ciclos de respiración 4-2-6 con los ojos cerrados.'
