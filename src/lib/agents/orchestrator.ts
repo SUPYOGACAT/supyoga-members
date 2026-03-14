@@ -44,10 +44,15 @@ export const Orchestrator = {
         let companionReply = "";
         let patternInsight: string | null = null;
         if (action_type === 'REFLECTION_SUBMITTED') {
+            // Extract scores and text
             const text = payload.text || "";
-            const sentiment = await RegulationAgent.analyzeSentiment(text);
+            const energy_score = payload.energy_score || null;
+            const calm_score = payload.calm_score || null;
+            const connection_score = payload.connection_score || null;
+            
+            const sentiment = await RegulationAgent.analyzeSentiment(text || 'Sin texto');
 
-            // Update reflection state with sentiment in db
+            // Update reflection state with sentiment and scores in db
             const supabase = await (await import('@/utils/supabase/server')).createClient();
             let currentDay = parseInt(state.current_stage.replace(/\D/g, '')) || 1;
             if (state.current_stage === 'NotStarted') currentDay = 0;
@@ -56,7 +61,10 @@ export const Orchestrator = {
                 user_id,
                 day: currentDay,
                 raw_text: text,
-                sentiment_flag: sentiment
+                sentiment_flag: sentiment,
+                energy_score,
+                calm_score,
+                connection_score
             });
 
             // Fetch previous day's reflection

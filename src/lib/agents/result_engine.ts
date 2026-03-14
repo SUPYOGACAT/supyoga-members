@@ -1,54 +1,87 @@
-import OpenAI from 'openai';
 import { createClient } from '@/utils/supabase/server';
 
-const openai = new OpenAI();
-
-const RESULT_ENGINE_PROMPT = `
-Eres el Motor de Resultados de Reset Azul.
-Misión: Genera un "Lightweight Pattern Insight" como resumen final del viaje de 7 días del usuario.
-
-REGLAS ESTRICTAS DE TONO:
-- Observacional, calmado, humano, poético pero claro.
-- NO uses etiquetas psicológicas.
-- NO uses lenguaje médico o terapéutico.
-- NO afirmes certezas absolutas ni suenes como un coach ("eres alguien que...", "has logrado...").
-- Usa fórmulas sutiles: "A lo largo de estos días, parece que...", "Tus reflexiones sugieren...", "Se observa una tendencia hacia...".
-- Conéctalo sutilmente con el agua o la quietud.
-- MÁXIMO 2-3 frases cortas.
-- Idioma: Español (España).
-
-Los datos de entrada incluyen las reflexiones del usuario a lo largo del viaje.
-`;
+export interface FinalProfile {
+    mode: 'calm' | 'energy' | 'connection';
+    title: string;
+    description: string;
+    scores: {
+        calm: number;
+        energy: number;
+        connection: number;
+    };
+    completionPercentage: number;
+}
 
 export const ResultEngine = {
-    async generateSummary(userId: string): Promise<string> {
+    async generateSummary(userId: string): Promise<FinalProfile> {
         const supabase = await createClient();
 
         const { data: reflections } = await supabase
             .from('reflections')
-            .select('day, raw_text, sentiment_flag')
+            .select('day, energy_score, calm_score, connection_score')
             .eq('user_id', userId)
-            .order('day', { ascending: true });
+            .gte('day', 1)
+            .lte('day', 7);
+
+        // Fallback or empty state
+        const defaultProfile: FinalProfile = {
+            mode: 'calm',
+            title: 'Buscadora de calma',
+            description: 'Tu cuerpo responde muy bien cuando bajas el ritmo. Las prácticas de respiración, meditación y presencia tienen un impacto directo en cómo te sientes. Tu camino pasa por darte más espacios de pausa y regulación en tu día a día.',
+            scores: { calm: 0, energy: 0, connection: 0 },
+            completionPercentage: 0
+        };
 
         if (!reflections || reflections.length === 0) {
-            return "Te has movido a través de estos siete días con una intención serena. Tu capacidad para comprometerte con este ritmo es una base sólida para lo que venga después.";
+            return defaultProfile;
         }
 
-        const compiledData = reflections.map(r => `Día ${r.day} [${r.sentiment_flag}]: ${r.raw_text}`).join('\n');
+        let totalCalm = 0;
+        let totalEnergy = 0;
+        let totalConnection = 0;
+        let daysCompleted = 0;
 
-        try {
-            const response = await openai.chat.completions.create({
-                model: 'gpt-4o',
-                messages: [
-                    { role: 'system', content: RESULT_ENGINE_PROMPT },
-                    { role: 'user', content: `Journey Data:\n${compiledData}` }
-                ],
-                temperature: 0.4,
-            });
+        reflections.forEach((r: { calm_score: number | null, energy_score: number | null, connection_score: number | null }) => {
+            if (r.calm_score || r.energy_score || r.connection_score) {
+                daysCompleted++;
+                totalCalm += r.calm_score || 0;
+                totalEnergy += r.energy_score || 0;
+                totalConnection += r.connection_score || 0;
+            }
+        });
 
-            return response.choices[0]?.message?.content?.trim() || "Te has movido a través de estos siete días con una intención serena.";
-        } catch (error) {
-            return "Te has movido a través de estos siete días con una intención serena.";
+        const sortedScores = [
+            { mode: 'connection' as const, score: totalConnection },
+            { mode: 'calm' as const, score: totalCalm },
+            { mode: 'energy' as const, score: totalEnergy }
+        ].sort((a, b) => b.score - a.score); // Descending
+
+        const winner = sortedScores[0].mode;
+
+        let title = '';
+        let description = '';
+
+        if (winner === 'calm') {
+            title = 'Buscadora de calma';
+            description = 'Tu cuerpo responde muy bien cuando bajas el ritmo. Las prácticas de respiración, meditación y presencia tienen un impacto directo en cómo te sientes. Tu camino pasa por darte más espacios de pausa y regulación en tu día a día.';
+        } else if (winner === 'energy') {
+            title = 'Exploradora del cuerpo';
+            description = 'Tu bienestar mejora especialmente cuando incluyes movimiento consciente. Caminar, respirar y movilizar el cuerpo te ayuda a liberar tensión y recuperar tu energía. Tu camino pasa por seguir habitando el cuerpo con más presencia.';
+        } else {
+            title = 'Conectada con el azul';
+            description = 'Tienes una sensibilidad especial hacia la conexión interna y los espacios que te ayudan a volver a ti. El mar, la respiración y la presencia tienen un efecto profundo en tu estado interno. Tu bienestar crece cuando mantienes vivos tus rituales azules.';
         }
+
+        return {
+            mode: winner,
+            title,
+            description,
+            scores: {
+                calm: totalCalm,
+                energy: totalEnergy,
+                connection: totalConnection
+            },
+            completionPercentage: Math.round((daysCompleted / 7) * 100)
+        };
     }
 };

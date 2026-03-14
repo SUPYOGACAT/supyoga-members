@@ -75,7 +75,7 @@ export default async function DashboardPage({
         : (blueResetJourney.find(m => m.day === viewDayNum) || blueResetJourney[0]);
     const currentDayReflection = dayReflections?.find(r => r.day === viewDayNum);
 
-    let resultSummary = "";
+    let resultSummary: import('@/lib/agents/result_engine').FinalProfile | string = "";
     if (viewDayNum === 7 && isStageCompleted) {
         resultSummary = await ResultEngine.generateSummary(user.id);
     }
@@ -94,41 +94,21 @@ export default async function DashboardPage({
             <main className="max-w-4xl mx-auto space-y-16">
 
                 {/* Journey Progress Indicator */}
-                <div className="relative px-4 max-w-2xl mx-auto mb-16">
-                    {/* Path line background */}
-                    <div className="absolute top-3 left-10 right-10 h-[1px] bg-blue-900/30 -z-10"></div>
-                    {/* Active path line */}
-                    <div
-                        className="absolute top-3 left-10 h-[1px] bg-blue-400/30 -z-10 transition-all duration-1000"
-                        style={{ width: `${Math.max(0, ((activeDayNum - 1) / 6) * 100)}%` }}
-                    ></div>
-
-                    <div className="flex justify-between items-center">
-                        {JOURNEY_STAGES.map((stageName, index) => {
-                            const dayIndex = index + 1;
-                            const isPast = dayIndex < activeDayNum || (stage === 'CompletedReset' && dayIndex <= 7) || (isStageCompleted && dayIndex === activeDayNum);
-                            const isCurrent = dayIndex === activeDayNum && stage !== 'CompletedReset' && !isStageCompleted;
-                            const isAccessible = dayIndex <= activeDayNum || stage === 'CompletedReset';
-
-                            const indicator = (isPast || (isCurrent && isStageCompleted)) ? '●' : isCurrent ? '●' : '○';
-
-                            // Highlight dot if it's the active view, except if we are on day 0 (none will be highlighted)
-                            const isActiveView = dayIndex === viewDayNum;
-
-                            return (
-                                <Link
-                                    key={index}
-                                    href={isAccessible ? `/dashboard?day=${dayIndex}` : '#'}
-                                    className={`flex flex-col items-center gap-3 transition-all duration-700 ${isActiveView ? 'text-blue-300 scale-125' :
-                                        isAccessible ? 'text-blue-500/60 hover:text-blue-400' : 'text-slate-700/50 cursor-not-allowed'
-                                        }`}
-                                >
-                                    <span className={`text-md bg-[#050c14] px-1 drop-shadow-lg ${isActiveView ? 'drop-shadow-[0_0_8px_rgba(147,197,253,0.5)]' : ''}`}>{indicator}</span>
-                                    <span className="hidden sm:block text-[9px] uppercase tracking-[0.2em] font-normal">{stageName}</span>
-                                </Link>
-                            );
+                <div className="relative px-4 max-w-2xl mx-auto mb-16 text-center">
+                    <p className="text-slate-200 text-lg md:text-xl font-normal tracking-wide mb-2">Tu Reset Azul</p>
+                    <div className="flex justify-center gap-1.5 mb-2">
+                        {[1, 2, 3, 4, 5, 6, 7].map((dayNum) => {
+                            let status = '⬜'; // Future
+                            if (dayNum < activeDayNum || (stage === 'CompletedReset' && dayNum <= 7) || (isStageCompleted && dayNum === activeDayNum)) {
+                                status = '🟦'; // Past or completed
+                            } else if (dayNum === activeDayNum) {
+                                status = '🔲'; // Current Active
+                            }
+                            return <span key={dayNum} className="text-base">{status}</span>
                         })}
                     </div>
+                    {stage !== 'CompletedReset' && <p className="text-slate-400 text-sm tracking-widest uppercase">Día {Math.min(activeDayNum, 7)} de 7</p>}
+                    {stage === 'CompletedReset' && <p className="text-blue-400 text-sm tracking-widest uppercase">Completado</p>}
                 </div>
 
                 <section className="bg-[#0b1a29]/40 backdrop-blur-xl p-8 md:p-16 rounded-[40px] border border-[#1a365d]/30 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] relative overflow-hidden transition-all duration-1000 max-w-4xl mx-auto">

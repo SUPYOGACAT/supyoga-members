@@ -22,5 +22,11 @@ export interface SystemEvent {
     user_id: string;
     action_type: EventType;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    payload: Record<string, any>;
+    payload: {
+        text?: string;
+        energy_score?: number;
+        calm_score?: number;
+        connection_score?: number;
+        [key: string]: any;
+    };
 }

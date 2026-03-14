@@ -9,6 +9,7 @@ export interface DailyModule {
         id: string;
         description: string;
     };
+    rewardMessage: string;
 }
 
 // Day 0 is a special module shown before the main journey begins
@@ -53,7 +54,8 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_001',
             description: 'Antes de tu próxima comida, haz 3 ciclos de respiración 4-2-6 con los ojos cerrados.'
-        }
+        },
+        rewardMessage: '🌊 Primer paso completado.\nHoy has enviado una señal de calma a tu sistema nervioso.\nA veces solo necesitamos unos minutos para empezar a cambiar nuestro estado interno.'
     },
     {
         day: 2,
@@ -65,7 +67,8 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_002',
             description: 'Frota despacio las manos y pásalas por las mejillas, las orejas y la cabeza. Tómate 60 segundos de autocontacto consciente.'
-        }
+        },
+        rewardMessage: '🌊 Tu cuerpo empieza a despertar.\nCuando caminas con presencia, tu mente empieza a desacelerar y tu sistema nervioso se siente más seguro.'
     },
     {
         day: 3,
@@ -77,7 +80,8 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_003',
             description: 'Pon 3 minutos de sonido del mar en el móvil y simplemente escúchalo. Sin hacer nada más.'
-        }
+        },
+        rewardMessage: '🌊 Tu respiración encuentra un nuevo ritmo.\nEl cuerpo sabe volver a la calma cuando le damos el espacio para hacerlo.'
     },
     {
         day: 4,
@@ -89,7 +93,8 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_004',
             description: 'Cada vez que sientas tensión en los hombros hoy, haz 3 círculos hacia atrás y un suspiro audible.'
-        }
+        },
+        rewardMessage: '🌊 Has liberado carga acumulada.\nEl cuerpo guarda mucho más de lo que creemos.\nHoy le has dado permiso para soltar.'
     },
     {
         day: 5,
@@ -101,7 +106,8 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_005',
             description: 'Escribe una sola frase de gratitud en tu libreta o en el móvil. Sin elaborar. Lo primero que salga.'
-        }
+        },
+        rewardMessage: '🌊 Tu corazón se abre un poco más.\nLa gratitud cambia la forma en que percibimos lo que nos sucede.'
     },
     {
         day: 6,
@@ -113,7 +119,8 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_006',
             description: 'En cualquier momento de tensión hoy, cierra los ojos 30 segundos e imagina una ola entrando y saliendo con tu respiración.'
-        }
+        },
+        rewardMessage: '🌊 La calma empieza a venir desde dentro.\nHoy has conectado con algo muy profundo: la capacidad de escucharte.'
     },
     {
         day: 7,
@@ -125,6 +132,7 @@ export const blueResetJourney: DailyModule[] = [
         microAction: {
             id: 'action_007',
             description: 'Comprométete con un único micro-hábito de los que has practicado esta semana. Escríbelo y ponlo en algún lugar visible.'
-        }
+        },
+        rewardMessage: '🌊 Reset Azul completado.\nDurante estos días has dedicado tiempo a parar, respirar y observar.\nPuede parecer pequeño…\npero los cambios reales empiezan exactamente así.'
     }
 ];
