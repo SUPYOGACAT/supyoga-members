@@ -139,7 +139,7 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                 {error && <p className="text-rose-300/80 text-sm font-medium">{error}</p>}
             </div>
 
-            <div className="pt-4 flex justify-center">
+            <div className="pt-4 flex flex-col items-center gap-8">
                 <button
                     type="submit"
                     disabled={isSubmitting || !isFormValid}
@@ -147,6 +147,10 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                 >
                     {isSubmitting ? 'Guardando...' : (day === 0 ? 'Guardar Test Inicial' : 'Completar Día')}
                 </button>
+
+                <p className="text-slate-500 text-[10px] md:text-xs font-light text-center max-w-sm leading-relaxed opacity-60">
+                    Toda esta información es para tu propio proceso, no se hará pública ningún valor ni nada de lo que compartas aquí, es personal y es tuyo.
+                </p>
             </div>
         </form>
     )
