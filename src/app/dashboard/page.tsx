@@ -90,7 +90,7 @@ export default async function DashboardPage({
                 <div className="relative px-4 max-w-2xl mx-auto mb-16 text-center">
                     <p className="text-slate-200 text-lg md:text-xl font-normal tracking-wide mb-2">Tu Reset Azul</p>
                     <div className="flex justify-center gap-1.5 mb-2">
-                        {[1, 2, 3, 4, 5, 6, 7].map((dayNum) => {
+                        {[0, 1, 2, 3, 4, 5, 6, 7].map((dayNum) => {
                             let isAccessible = dayNum <= activeDayNum || stage === 'CompletedReset';
                             let isPast = dayNum < activeDayNum || (stage === 'CompletedReset' && dayNum <= 7) || (isStageCompleted && dayNum === activeDayNum);
                             let isCurrent = dayNum === activeDayNum && stage !== 'CompletedReset' && !isStageCompleted;
