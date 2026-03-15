@@ -9,11 +9,12 @@ export async function GET() {
         return NextResponse.json({ error: 'No estás logueado. Inicia sesión primero.' }, { status: 401 });
     }
 
-    // Reset user state to NotStarted
+    // Reset user state to NotStarted and update created_at to restart the drip content timer
     const { error } = await supabase.from('user_states').update({
         current_stage: 'NotStarted',
         current_streak: 0,
-        water_drops: 0
+        water_drops: 0,
+        created_at: new Date().toISOString()
     }).eq('user_id', user.id);
 
     if (error) {

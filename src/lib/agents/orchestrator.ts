@@ -141,10 +141,29 @@ export const Orchestrator = {
         }
 
         if (action_type === 'START_NEXT_DAY') {
+            let maxUnlockedDay = 1;
+            if (state.created_at) {
+                const createdDate = new Date(state.created_at);
+                const now = new Date();
+                const fmtOptions = { timeZone: 'Europe/Madrid', year: 'numeric' as const, month: '2-digit' as const, day: '2-digit' as const };
+                const cParts = new Intl.DateTimeFormat('en-CA', fmtOptions).formatToParts(createdDate);
+                const nParts = new Intl.DateTimeFormat('en-CA', fmtOptions).formatToParts(now);
+                
+                const cStr = `${cParts.find(p=>p.type==='year')?.value}-${cParts.find(p=>p.type==='month')?.value}-${cParts.find(p=>p.type==='day')?.value}`;
+                const nStr = `${nParts.find(p=>p.type==='year')?.value}-${nParts.find(p=>p.type==='month')?.value}-${nParts.find(p=>p.type==='day')?.value}`;
+                
+                const cDateOnly = new Date(`${cStr}T00:00:00Z`);
+                const nDateOnly = new Date(`${nStr}T00:00:00Z`);
+                const diffDays = Math.floor(Math.abs(nDateOnly.getTime() - cDateOnly.getTime()) / (1000 * 60 * 60 * 24));
+                maxUnlockedDay = 1 + diffDays;
+            }
+
             if (state.current_stage.startsWith('CompletedDay')) {
                 const currentDay = parseInt(state.current_stage.replace('CompletedDay', '')) || 1;
-                if (currentDay < 7) {
+                if (currentDay < 7 && currentDay + 1 <= maxUnlockedDay) {
                     await StateManager.advanceStage(user_id, `ActiveDay${currentDay + 1}`);
+                } else if (currentDay + 1 > maxUnlockedDay) {
+                    console.log(`[ORCHESTRATOR] Blocked START_NEXT_DAY for user ${user_id}: Day ${currentDay + 1} locked until midnight.`);
                 }
             } else if (state.current_stage === 'NotStarted') {
                 await StateManager.advanceStage(user_id, 'ActiveDay1');

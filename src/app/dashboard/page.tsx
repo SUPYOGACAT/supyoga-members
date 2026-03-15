@@ -44,6 +44,29 @@ export default async function DashboardPage({
     const drops = userState?.water_drops || 0;
     const stage = userState?.current_stage || 'NotStarted';
 
+    // Calculate maxUnlockedDay based on 'created_at' and Madrid timezone
+    let maxUnlockedDay = 1;
+    if (userState?.created_at) {
+        // We calculate how many midnights have passed since registration in Europe/Madrid
+        const createdDate = new Date(userState.created_at);
+        const now = new Date();
+
+        // Format dates to YYYY-MM-DD in Madrid timezone
+        const fmtOptions = { timeZone: 'Europe/Madrid', year: 'numeric' as const, month: '2-digit' as const, day: '2-digit' as const };
+        const createdParts = new Intl.DateTimeFormat('en-CA', fmtOptions).formatToParts(createdDate);
+        const nowParts = new Intl.DateTimeFormat('en-CA', fmtOptions).formatToParts(now);
+
+        const createdString = `${createdParts.find(p => p.type === 'year')?.value}-${createdParts.find(p => p.type === 'month')?.value}-${createdParts.find(p => p.type === 'day')?.value}`;
+        const nowString = `${nowParts.find(p => p.type === 'year')?.value}-${nowParts.find(p => p.type === 'month')?.value}-${nowParts.find(p => p.type === 'day')?.value}`;
+
+        const createdDateOnly = new Date(`${createdString}T00:00:00Z`);
+        const nowDateOnly = new Date(`${nowString}T00:00:00Z`);
+
+        const diffTime = Math.abs(nowDateOnly.getTime() - createdDateOnly.getTime());
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        maxUnlockedDay = 1 + diffDays; // Day 0 registration -> unlocks up to Day 1. Next midnight -> unlocks Day 2.
+    }
+
     // Logic to determine active day (progress)
     let activeDayNum = stage === 'NotStarted' ? 0 : 1;
     const isStageCompleted = stage.startsWith('CompletedDay') || stage === 'CompletedReset';
@@ -60,7 +83,7 @@ export default async function DashboardPage({
     let viewDayNum = activeDayNum;
     if (params.day) {
         const requestedDay = parseInt(params.day);
-        const maxAccessibleDay = stage === 'CompletedReset' ? 7 : activeDayNum;
+        const maxAccessibleDay = stage === 'CompletedReset' ? 7 : Math.min(activeDayNum, maxUnlockedDay);
         if (!isNaN(requestedDay) && requestedDay >= 0 && requestedDay <= maxAccessibleDay) {
             viewDayNum = requestedDay;
         }
@@ -91,7 +114,7 @@ export default async function DashboardPage({
                     <p className="text-slate-200 text-lg md:text-xl font-normal tracking-wide mb-2">Tu Reset Azul</p>
                     <div className="flex justify-center gap-1.5 mb-2">
                         {[0, 1, 2, 3, 4, 5, 6, 7].map((dayNum) => {
-                            let isAccessible = dayNum <= activeDayNum || stage === 'CompletedReset';
+                            let isAccessible = (dayNum <= activeDayNum && dayNum <= maxUnlockedDay) || stage === 'CompletedReset';
                             let isPast = dayNum < activeDayNum || (stage === 'CompletedReset' && dayNum <= 7) || (isStageCompleted && dayNum === activeDayNum);
                             let isCurrent = dayNum === activeDayNum && stage !== 'CompletedReset' && !isStageCompleted;
                             
@@ -191,7 +214,16 @@ export default async function DashboardPage({
 
                                     {viewDayNum === activeDayNum && isStageCompleted && activeDayNum < 7 && (
                                         <div className="mt-12">
-                                            <NextDayButton />
+                                            {activeDayNum + 1 <= maxUnlockedDay ? (
+                                                <NextDayButton />
+                                            ) : (
+                                                <div className="inline-block px-8 py-4 bg-slate-800/40 rounded-2xl border border-slate-700/50 backdrop-blur-sm max-w-sm mx-auto">
+                                                    <p className="text-slate-300 text-sm italic font-light leading-relaxed">
+                                                        Práctica guardada con éxito.<br/>
+                                                        El Día {activeDayNum + 1} estará disponible a partir de medianoche.
+                                                    </p>
+                                                </div>
+                                            )}
                                         </div>
                                     )}
 
