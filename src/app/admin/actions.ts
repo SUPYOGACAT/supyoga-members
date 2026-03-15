@@ -47,12 +47,13 @@ export async function resetUserProgress(userId: string) {
         await supabase.from('companion_interactions').delete().eq('user_id', userId)
         await supabase.from('events').delete().eq('user_id', userId)
         
-        // Reset the state to NotStarted
+        // Reset the state to NotStarted and overwrite created_at to restart drip content timer
         const { error } = await supabase.from('user_states').update({
             current_stage: 'NotStarted',
             water_drops: 0,
             current_streak: 0,
-            completed_days: []
+            completed_days: [],
+            created_at: new Date().toISOString()
         }).eq('user_id', userId)
 
         if (error) {
