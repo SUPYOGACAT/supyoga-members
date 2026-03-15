@@ -94,7 +94,7 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                     }}
                     className="mt-6 px-10 py-4 bg-blue-600/10 hover:bg-blue-600/20 text-blue-200 border border-blue-500/30 rounded-full transition-all font-normal tracking-widest uppercase text-xs backdrop-blur-sm shadow-lg shadow-blue-900/20"
                 >
-                    Cerrar Práctica de Hoy
+                    {day === 0 ? 'Cerrar Día 0' : 'Cerrar Práctica de Hoy'}
                 </button>
             </div>
         )
@@ -116,7 +116,9 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
             </div>
 
             <div className="space-y-6 text-center">
-                <h3 className="text-xl text-[#E6F0FF] font-light opacity-90">¿Qué has notado durante la práctica?</h3>
+                <h3 className="text-xl text-[#E6F0FF] font-light opacity-90">
+                    {day === 0 ? "¿Qué has descubierto en este test?" : "¿Qué has notado durante la práctica?"}
+                </h3>
                 <div className="relative">
                     <textarea
                         value={reflection}
@@ -143,7 +145,7 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                     disabled={isSubmitting || !isFormValid}
                     className="px-12 py-4 bg-blue-600/20 hover:bg-blue-600/30 text-[#E6F0FF] border border-blue-500/30 rounded-full transition-all duration-500 font-normal tracking-widest uppercase text-xs shadow-[0_15px_40px_-10px_rgba(59,130,246,0.3)] disabled:opacity-20 disabled:cursor-not-allowed disabled:shadow-none backdrop-blur-sm w-full sm:w-auto hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.4)] hover:-translate-y-1"
                 >
-                    {isSubmitting ? 'Guardando...' : 'Completar Día'}
+                    {isSubmitting ? 'Guardando...' : (day === 0 ? 'Guardar Test Inicial' : 'Completar Día')}
                 </button>
             </div>
         </form>
