@@ -121,7 +121,7 @@ export default function ReflectionForm({ day, practice }: { day: number, practic
                     <textarea
                         value={reflection}
                         onChange={(e) => setReflection(e.target.value)}
-                        placeholder="Escribe una palabra, sensación o pensamiento... (Opcional)"
+                        placeholder={day === 0 ? "Escribe aquí los resultados que has escrito en tu papel" : "Escribe una palabra, sensación o pensamiento... (Opcional)"}
                         className="w-full min-h-[120px] bg-[#0d2136]/30 border border-[#1e3a5f]/40 rounded-2xl p-6 text-slate-200 placeholder-[#9FB3CC]/30 focus:outline-none focus:border-blue-400/40 focus:ring-1 focus:ring-blue-400/20 transition-all resize-none shadow-inner text-base font-normal leading-relaxed backdrop-blur-md"
                         disabled={isSubmitting}
                     />
