@@ -49,7 +49,7 @@ export const blueResetJourney: DailyModule[] = [
         theme: 'Calmar',
         title: 'El Arte de Parar',
         description: 'Hoy empezamos con algo esencial.\n\nTu sistema nervioso está constantemente recibiendo información del entorno: sonidos, luz, personas, situaciones… Y muchas veces acumula más tensión de la que somos conscientes.\n\nEn la práctica de hoy vamos a usar la respiración para enviar una señal de calma al cuerpo. Es una práctica sencilla que puedes hacer frente al mar o desde casa observando un horizonte amplio. Solo necesitas unos minutos para empezar a crear más espacio dentro de ti.\n\nCuando estés listo, empieza la práctica.',
-        videoUrl: 'https://www.youtube.com/watch?v=jNn3j7h_1NE',
+        videoUrl: 'https://www.youtube.com/watch?v=ZP8m1uxZUpg',
         practice: '',
         microAction: {
             id: 'action_001',
