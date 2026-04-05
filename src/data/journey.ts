@@ -75,7 +75,7 @@ export const blueResetJourney: DailyModule[] = [
         theme: 'Regular',
         title: 'El Ritmo del Mar',
         description: 'El sonido del mar tiene un efecto muy especial sobre nuestra mente.\n\nSu ritmo repetitivo ayuda al cerebro a entrar en estados de calma y concentración. Hoy vas a sincronizar tu respiración con ese ritmo.\n\nSi tienes el mar cerca, simplemente escúchalo. Si no, puedes usar el audio que acompaña esta práctica.\n\nNo hay que hacer nada perfecto. Solo observar la respiración y dejar que poco a poco encuentre su propio ritmo.',
-        videoUrl: 'https://www.youtube.com/watch?v=WPYKuGXO4rA',
+        videoUrl: 'https://www.youtube.com/watch?v=8TBRFDPXUM8',
         practice: '',
         microAction: {
             id: 'action_003',
