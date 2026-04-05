@@ -1,3 +1,8 @@
+export interface AudioOption {
+    label: string;
+    url: string;
+}
+
 export interface DailyModule {
     day: number;
     theme: string;
@@ -10,7 +15,7 @@ export interface DailyModule {
         description: string;
     };
     rewardMessage: string;
-    audioUrl?: string;
+    audios?: AudioOption[];
 }
 
 // Day 0 is a special module shown before the main journey begins
@@ -27,7 +32,7 @@ export interface DayZeroModule {
     title: string;
     description: string;
     practice: string;
-    audioUrl?: string;
+    audios?: AudioOption[];
 }
 
 export const welcomeModule: WelcomeModule = {
@@ -58,7 +63,9 @@ export const blueResetJourney: DailyModule[] = [
             description: 'Antes de tu próxima comida, haz 3 ciclos de respiración 4-2-6 con los ojos cerrados.'
         },
         rewardMessage: '🌊 Primer paso completado.\nHoy has enviado una señal de calma a tu sistema nervioso.\nA veces solo necesitamos unos minutos para empezar a cambiar nuestro estado interno.',
-        audioUrl: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-1.mp3'
+        audios: [
+            { label: 'Solo audio', url: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-1.mp3' }
+        ]
     },
     {
         day: 2,
@@ -71,7 +78,11 @@ export const blueResetJourney: DailyModule[] = [
             id: 'action_002',
             description: 'Frota despacio las manos y pásalas por las mejillas, las orejas y la cabeza. Tómate 60 segundos de autocontacto consciente.'
         },
-        rewardMessage: '🌊 Tu cuerpo empieza a despertar.\nCuando caminas con presencia, tu mente empieza a desacelerar y tu sistema nervioso se siente más seguro.'
+        rewardMessage: '🌊 Tu cuerpo empieza a despertar.\nCuando caminas con presencia, tu mente empieza a desacelerar y tu sistema nervioso se siente más seguro.',
+        audios: [
+            { label: 'Audio voz + sonido de entorno', url: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-2-Audio-con-sonido-entorno-voz.mp3' },
+            { label: 'Solo audio voz', url: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-2-Audio-solo-voz.mp3' }
+        ]
     },
     {
         day: 3,
@@ -84,7 +95,11 @@ export const blueResetJourney: DailyModule[] = [
             id: 'action_003',
             description: 'Pon 3 minutos de sonido del mar en el móvil y simplemente escúchalo. Sin hacer nada más.'
         },
-        rewardMessage: '🌊 Tu respiración encuentra un nuevo ritmo.\nEl cuerpo sabe volver a la calma cuando le damos el espacio para hacerlo.'
+        rewardMessage: '🌊 Tu respiración encuentra un nuevo ritmo.\nEl cuerpo sabe volver a la calma cuando le damos el espacio para hacerlo.',
+        audios: [
+            { label: 'Audio voz + mar', url: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-3-Audio-con-sonido-mar-voz.mp3' },
+            { label: 'Solo audio voz', url: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-3-Audio-solo-voz.mp3' }
+        ]
     },
     {
         day: 4,

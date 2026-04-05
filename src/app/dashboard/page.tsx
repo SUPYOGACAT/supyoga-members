@@ -178,9 +178,12 @@ export default async function DashboardPage({
                     )}
 
                     {/* Audio Section */}
-                    {currentModule.audioUrl && (
-                        <div className="mb-20">
-                            <AudioPlayer url={currentModule.audioUrl} />
+                    {currentModule.audios && currentModule.audios.length > 0 && (
+                        <div className="mb-20 space-y-4">
+                            <h4 className="text-[#E6F0FF] text-[10px] md:text-xs uppercase tracking-[0.4em] text-slate-400 mb-8 text-center opacity-60">Audios de la Práctica</h4>
+                            {currentModule.audios.map((audio, index) => (
+                                <AudioPlayer key={index} url={audio.url} label={audio.label} />
+                            ))}
                         </div>
                     )}
 
