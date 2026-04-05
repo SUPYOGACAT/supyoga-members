@@ -8,6 +8,7 @@ import CompanionIntro from './CompanionIntro'
 import WaterDropsCounter from './WaterDropsCounter'
 import MicroInsight from './MicroInsight'
 import UserMenu from './UserMenu'
+import AudioPlayer from './AudioPlayer'
 import { blueResetJourney, dayZeroModule } from '@/data/journey'
 import Footer from '../components/Footer'
 
@@ -173,6 +174,13 @@ export default async function DashboardPage({
                     {currentModule.videoUrl && (
                         <div className="mb-20">
                             <VideoPlayer url={currentModule.videoUrl} />
+                        </div>
+                    )}
+
+                    {/* Audio Section */}
+                    {currentModule.audioUrl && (
+                        <div className="mb-20">
+                            <AudioPlayer url={currentModule.audioUrl} />
                         </div>
                     )}
 

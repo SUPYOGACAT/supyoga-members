@@ -10,6 +10,7 @@ export interface DailyModule {
         description: string;
     };
     rewardMessage: string;
+    audioUrl?: string;
 }
 
 // Day 0 is a special module shown before the main journey begins
@@ -26,6 +27,7 @@ export interface DayZeroModule {
     title: string;
     description: string;
     practice: string;
+    audioUrl?: string;
 }
 
 export const welcomeModule: WelcomeModule = {
@@ -55,7 +57,8 @@ export const blueResetJourney: DailyModule[] = [
             id: 'action_001',
             description: 'Antes de tu próxima comida, haz 3 ciclos de respiración 4-2-6 con los ojos cerrados.'
         },
-        rewardMessage: '🌊 Primer paso completado.\nHoy has enviado una señal de calma a tu sistema nervioso.\nA veces solo necesitamos unos minutos para empezar a cambiar nuestro estado interno.'
+        rewardMessage: '🌊 Primer paso completado.\nHoy has enviado una señal de calma a tu sistema nervioso.\nA veces solo necesitamos unos minutos para empezar a cambiar nuestro estado interno.',
+        audioUrl: 'https://supyoga.cat/wp-content/uploads/2026/03/DIA-1.mp3'
     },
     {
         day: 2,
