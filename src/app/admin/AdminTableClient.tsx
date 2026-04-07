@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { resetUserProgress } from './actions'
+import { resetUserProgress, exportAllReflectionsData } from './actions'
 
 interface Member {
     id: string
@@ -75,6 +75,7 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
     const [filter, setFilter] = useState<'all' | 'active' | 'completed' | 'notstarted'>('all')
     const [search, setSearch] = useState('')
     const [isResetting, setIsResetting] = useState<string | null>(null)
+    const [isExportingReflections, setIsExportingReflections] = useState(false)
     const router = useRouter()
 
     const handleReset = async (userId: string, userName: string | null) => {
@@ -89,6 +90,47 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
             console.error(error)
         } finally {
             setIsResetting(null)
+        }
+    }
+
+    const handleExportReflections = async () => {
+        setIsExportingReflections(true)
+        try {
+            const data = await exportAllReflectionsData()
+            if (!data || data.length === 0) {
+                alert('No hay reflexiones para exportar.')
+                return
+            }
+
+            const headers = ['Nombre', 'Email', 'Día', 'Comentario', 'Energía', 'Calma', 'Estrés', 'Fecha']
+            const rows = data.map(r => [
+                r.user_name || '—',
+                r.user_email || '—',
+                r.day,
+                (r.raw_text || '').replace(/"/g, '""'), // Escape quotes for CSV
+                r.energy_score || '',
+                r.calm_score || '',
+                r.stress_score || '',
+                formatDate(r.created_at)
+            ])
+
+            const csvContent = [
+                headers.join(','),
+                ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+            ].join('\n')
+
+            const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' })
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = `blue-reset-reflexiones-${new Date().toISOString().slice(0, 10)}.csv`
+            a.click()
+            URL.revokeObjectURL(url)
+        } catch (error) {
+            console.error(error)
+            alert('Error al exportar las reflexiones.')
+        } finally {
+            setIsExportingReflections(false)
         }
     }
 
@@ -150,13 +192,23 @@ export default function AdminTableClient({ members }: { members: Member[] }) {
                         </button>
                     ))}
                 </div>
-                <button
-                    onClick={() => downloadCSV(filteredMembers)}
-                    className="px-6 py-2 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-xl transition-all duration-300 font-normal tracking-widest uppercase text-xs flex items-center gap-2"
-                >
-                    <span>⬇</span>
-                    Exportar CSV
-                </button>
+                <div className="flex gap-2">
+                    <button
+                        onClick={handleExportReflections}
+                        disabled={isExportingReflections}
+                        className="px-6 py-2 bg-purple-600/15 hover:bg-purple-600/25 text-purple-100 border border-purple-500/30 rounded-xl transition-all duration-300 font-normal tracking-widest uppercase text-xs flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        <span>⬇</span>
+                        {isExportingReflections ? 'Exportando...' : 'Respuestas'}
+                    </button>
+                    <button
+                        onClick={() => downloadCSV(filteredMembers)}
+                        className="px-6 py-2 bg-blue-600/15 hover:bg-blue-600/25 text-[#E6F0FF] border border-blue-500/30 rounded-xl transition-all duration-300 font-normal tracking-widest uppercase text-xs flex items-center gap-2"
+                    >
+                        <span>⬇</span>
+                        Exportar CSV
+                    </button>
+                </div>
             </div>
 
             {/* Table */}

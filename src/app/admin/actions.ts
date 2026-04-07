@@ -66,3 +66,51 @@ export async function resetUserProgress(userId: string) {
         throw new Error('Failed to reset user')
     }
 }
+
+export async function exportAllReflectionsData() {
+    const cookieStore = await cookies()
+    const session = cookieStore.get('admin_session')
+    if (!session || session.value !== 'authenticated') {
+        throw new Error('Unauthorized')
+    }
+
+    const { createAdminClient } = await import('@/utils/supabase/admin')
+    const supabase = createAdminClient()
+
+    try {
+        // Fetch users to map IDs to names/emails
+        const { data: users, error: usersError } = await supabase
+            .from('users')
+            .select('id, name, email');
+            
+        if (usersError) throw usersError;
+
+        // Fetch all reflections
+        const { data: reflections, error: refError } = await supabase
+            .from('reflections')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (refError) throw refError;
+
+        // Create a lookup map for faster mapping
+        const userMap = new Map();
+        users?.forEach(u => userMap.set(u.id, u));
+
+        // Join data
+        const enrichedReflections = reflections?.map(r => {
+            const user = userMap.get(r.user_id) || { name: 'Desconocido', email: 'Desconocido' };
+            return {
+                ...r,
+                user_name: user.name,
+                user_email: user.email
+            };
+        }) || [];
+
+        return enrichedReflections;
+
+    } catch (error) {
+        console.error('[ADMIN] Error exporting reflections:', error)
+        throw new Error('Failed to export reflections')
+    }
+}
