@@ -241,9 +241,14 @@ export default async function DashboardPage({
                                     {/* Final transition button if Day 7 is completed */}
                                     {viewDayNum === 7 && isStageCompleted && (
                                         <div className="mt-12">
-                                            <Link href="/membership" className="inline-block px-10 py-4 bg-blue-600/20 hover:bg-blue-600/30 text-[#E6F0FF] border border-blue-400/30 rounded-full transition-all duration-700 font-normal shadow-[0_15px_40px_-10px_rgba(59,130,246,0.3)] hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.5)] hover:-translate-y-1 backdrop-blur-md uppercase tracking-[0.2em] text-xs">
-                                                Descubrir mi perfil final
-                                            </Link>
+                                            <a 
+                                                href="https://club-calma-azul-membres-a-premium-926838840634.us-west1.run.app/" 
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-block px-10 py-4 bg-blue-600/20 hover:bg-blue-600/30 text-[#E6F0FF] border border-blue-400/30 rounded-full transition-all duration-700 font-normal shadow-[0_15px_40px_-10px_rgba(59,130,246,0.3)] hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.5)] hover:-translate-y-1 backdrop-blur-md uppercase tracking-[0.2em] text-xs"
+                                            >
+                                                Continuar a la siguiente etapa
+                                            </a>
                                         </div>
                                     )}
                                 </div>
