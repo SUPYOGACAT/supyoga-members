@@ -138,7 +138,10 @@ export const blueResetJourney: DailyModule[] = [
             id: 'action_006',
             description: 'En cualquier momento de tensión hoy, cierra los ojos 30 segundos e imagina una ola entrando y saliendo con tu respiración.'
         },
-        rewardMessage: '🌊 La calma empieza a venir desde dentro.\nHoy has conectado con algo muy profundo: la capacidad de escucharte.'
+        rewardMessage: '🌊 La calma empieza a venir desde dentro.\nHoy has conectado con algo muy profundo: la capacidad de escucharte.',
+        audios: [
+            { label: 'Solo audio', url: 'https://supyoga.cat/wp-content/uploads/2026/04/DIA-6.mp3' }
+        ]
     },
     {
         day: 7,
