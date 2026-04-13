@@ -92,7 +92,7 @@ export default async function MembershipLandingPage() {
                             </p>
                             
                             <a 
-                                href="https://supyoga.cat/club" 
+                                href="https://club-calma-azul-membres-a-premium-926838840634.us-west1.run.app/" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="inline-block mt-8 px-12 py-5 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-full transition-all duration-700 shadow-[0_15px_40px_-10px_rgba(59,130,246,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.6)] hover:-translate-y-1 backdrop-blur-md uppercase tracking-[0.2em] text-sm font-medium w-full sm:w-auto"
