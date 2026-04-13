@@ -148,12 +148,15 @@ export const blueResetJourney: DailyModule[] = [
         theme: 'Integrar y Cerrar',
         title: 'El Viaje Continúa',
         description: 'Hemos llegado al último día del Reset Azul. Hoy es un día para integrar lo que has vivido durante esta semana.\n\nVas a repetir algunas de las respiraciones que has aprendido y después volverás a tu libreta para observar qué ha cambiado.\n\nNo se trata de que todo haya mejorado. Se trata de observar tu experiencia después de estos siete días. Al final de la práctica elegirás un pequeño micro-hábito que puedas llevar contigo en tu día a día.\n\nPorque los cambios reales no vienen de hacer mucho. Vienen de pequeños gestos repetidos en el tiempo.',
-        videoUrl: 'https://www.youtube.com/watch?v=7S7yUnjNcD0',
+        videoUrl: 'https://www.youtube.com/watch?v=uTOQTFQS7-c',
         practice: '',
         microAction: {
             id: 'action_007',
             description: 'Comprométete con un único micro-hábito de los que has practicado esta semana. Escríbelo y ponlo en algún lugar visible.'
         },
-        rewardMessage: '🌊 Reset Azul completado.\nDurante estos días has dedicado tiempo a parar, respirar y observar.\nPuede parecer pequeño…\npero los cambios reales empiezan exactamente así.'
+        rewardMessage: '🌊 Reset Azul completado.\nDurante estos días has dedicado tiempo a parar, respirar y observar.\nPuede parecer pequeño…\npero los cambios reales empiezan exactamente así.',
+        audios: [
+            { label: 'Solo audio', url: 'https://supyoga.cat/wp-content/uploads/2026/04/DIA-7.mp3' }
+        ]
     }
 ];
